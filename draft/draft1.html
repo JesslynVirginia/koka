@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOKA — Cafe Finder for Work & Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F3EE;
+    --espresso: #2C1A0E;
+    --brown: #6B3F2A;
+    --caramel: #C47D3E;
+    --latte: #D9BFA8;
+    --foam: #EDE5DC;
+    --sage: #7A8C72;
+    --text: #1E1208;
+    --muted: #9A8475;
+    --white: #FDFAF7;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow: 0 4px 24px rgba(44,26,14,0.10);
+    --shadow-lg: 0 12px 48px rgba(44,26,14,0.16);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    background: rgba(247,243,238,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(196,125,62,0.12);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem; color: var(--espresso); letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+  .nav-logo .dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--caramel), var(--brown));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; color: #fff; font-family: 'DM Sans', sans-serif; font-weight: 600;
+  }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    padding: 8px 18px; border-radius: 40px;
+    font-size: 0.9rem; font-weight: 500; color: var(--espresso);
+    text-decoration: none; transition: all 0.2s;
+    cursor: pointer;
+  }
+  .nav-links a:hover { background: var(--foam); }
+  .nav-links a.active {
+    background: var(--espresso); color: var(--white);
+  }
+
+  /* ── PAGES ── */
+  .page { display: none; min-height: 100vh; padding-top: 64px; }
+  .page.active { display: block; }
+
+  /* ── SECTION WRAPPER ── */
+  .section { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+
+  /* ============================
+     HOME PAGE
+     ============================ */
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: calc(100vh - 64px);
+    display: flex; align-items: center;
+    padding: 0 48px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #2C1A0E 0%, #6B3F2A 50%, #C47D3E 100%);
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 700px;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: var(--latte); font-size: 0.8rem; font-weight: 500;
+    padding: 6px 14px; border-radius: 40px; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 28px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    color: #fff; line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .hero h1 em { color: var(--caramel); font-style: italic; }
+  .hero p {
+    font-size: 1.15rem; color: rgba(255,255,255,0.72);
+    line-height: 1.7; max-width: 520px; margin-bottom: 40px;
+  }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 14px 32px; border-radius: 40px;
+    background: var(--caramel); color: #fff;
+    font-size: 0.95rem; font-weight: 600;
+    border: none; cursor: pointer;
+    transition: all 0.25s; text-decoration: none; display: inline-flex;
+    align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: #a8662f; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,125,62,0.4); }
+  .btn-outline {
+    padding: 14px 32px; border-radius: 40px;
+    background: transparent; color: #fff;
+    font-size: 0.95rem; font-weight: 500;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    cursor: pointer; transition: all 0.25s;
+    text-decoration: none; display: inline-flex; align-items: center;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); }
+  .hero-deco {
+    position: absolute; right: 48px; bottom: 60px;
+    display: flex; gap: 16px; z-index: 2;
+  }
+  .hero-stat {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 14px; padding: 20px 24px; text-align: center;
+    backdrop-filter: blur(8px);
+  }
+  .hero-stat strong {
+    display: block; font-family: 'DM Serif Display', serif;
+    font-size: 2rem; color: #fff;
+  }
+  .hero-stat span { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+
+  /* Details section */
+  .details-section { background: var(--white); }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--caramel);
+    margin-bottom: 12px; display: block;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--espresso); margin-bottom: 16px; line-height: 1.15;
+  }
+  .section-sub {
+    font-size: 1.05rem; color: var(--muted);
+    max-width: 540px; line-height: 1.7; margin-bottom: 56px;
+  }
+  .details-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .detail-card {
+    background: var(--cream); border-radius: var(--radius);
+    padding: 32px 24px; transition: all 0.3s;
+    border: 1px solid transparent;
+  }
+  .detail-card:hover {
+    transform: translateY(-6px); border-color: var(--latte);
+    box-shadow: var(--shadow-lg);
+  }
+  .detail-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; margin-bottom: 20px;
+  }
+  .detail-icon.rec { background: linear-gradient(135deg, #C47D3E22, #C47D3E44); }
+  .detail-icon.wifi { background: linear-gradient(135deg, #7A8C7222, #7A8C7244); }
+  .detail-icon.plug { background: linear-gradient(135deg, #6B3F2A22, #6B3F2A44); }
+  .detail-icon.amb { background: linear-gradient(135deg, #D9BFA844, #C47D3E22); }
+  .detail-card h3 { font-weight: 600; font-size: 1rem; margin-bottom: 10px; color: var(--espresso); }
+  .detail-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+  /* Promo Video section */
+  .video-section { background: var(--foam); }
+  .video-layout { display: grid; grid-template-columns: 3fr 2fr; gap: 40px; align-items: center; }
+  .video-player {
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--espresso), var(--brown));
+    aspect-ratio: 16/9;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; position: relative; overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .video-player::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(196,125,62,0.3), transparent 60%);
+  }
+  .play-btn {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: rgba(255,255,255,0.22); border: 2px solid rgba(255,255,255,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; color: #fff; position: relative; z-index: 1;
+    transition: all 0.3s; backdrop-filter: blur(6px);
+  }
+  .video-player:hover .play-btn {
+    background: rgba(255,255,255,0.35); transform: scale(1.08);
+  }
+  .video-info {
+    background: var(--white); border-radius: var(--radius);
+    padding: 36px 32px; box-shadow: var(--shadow);
+  }
+  .video-info h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem; margin-bottom: 14px; color: var(--espresso);
+  }
+  .video-info p { color: var(--muted); line-height: 1.7; font-size: 0.95rem; margin-bottom: 28px; }
+  .yt-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--espresso); color: #fff;
+    padding: 12px 24px; border-radius: 10px; font-weight: 500; font-size: 0.9rem;
+    text-decoration: none; transition: all 0.25s;
+  }
+  .yt-btn:hover { background: var(--brown); }
+
+  /* Footer */
+  footer {
+    background: var(--espresso); color: var(--latte);
+    padding: 60px 48px 32px;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr; gap: 60px;
+    padding-bottom: 40px; border-bottom: 1px solid rgba(217,191,168,0.15);
+  }
+  .footer-brand .nav-logo { color: var(--white); margin-bottom: 16px; display: flex; }
+  .footer-brand p { color: rgba(217,191,168,0.7); font-size: 0.9rem; line-height: 1.7; max-width: 320px; }
+  .footer-follow h4 { color: var(--white); font-weight: 600; margin-bottom: 18px; }
+  .social-icons { display: flex; gap: 12px; }
+  .social-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center; font-size: 1rem;
+    transition: all 0.2s; cursor: pointer; color: var(--latte); text-decoration: none;
+  }
+  .social-icon:hover { background: var(--caramel); border-color: var(--caramel); }
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    padding-top: 28px; display: flex; justify-content: space-between;
+    font-size: 0.82rem; color: rgba(217,191,168,0.45);
+  }
+
+  /* ============================
+     EXPLORE PAGE
+     ============================ */
+  .explore-header { text-align: center; margin-bottom: 48px; }
+  .filter-bar {
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 48px;
+  }
+  .filter-btn {
+    padding: 10px 24px; border-radius: 40px; border: 1.5px solid var(--latte);
+    background: transparent; color: var(--espresso);
+    font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .filter-btn:hover { border-color: var(--caramel); color: var(--caramel); }
+  .filter-btn.active { background: var(--espresso); border-color: var(--espresso); color: var(--white); }
+  .cafe-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .cafe-card {
+    background: var(--white); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow);
+    transition: all 0.3s; cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .cafe-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--latte); }
+  .cafe-card.hidden { display: none; }
+  .cafe-img {
+    aspect-ratio: 4/3;
+    position: relative; overflow: hidden;
+  }
+  .cafe-img-inner {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    transition: transform 0.4s;
+  }
+  .cafe-card:hover .cafe-img-inner { transform: scale(1.05); }
+  .cafe-img-1 { background: linear-gradient(135deg, #8B6151, #C47D3E); }
+  .cafe-img-2 { background: linear-gradient(135deg, #4A6741, #7A8C72); }
+  .cafe-img-3 { background: linear-gradient(135deg, #3A4A6B, #5B7AB8); }
+  .cafe-img-4 { background: linear-gradient(135deg, #7B5A3A, #C4955A); }
+  .cafe-img-5 { background: linear-gradient(135deg, #5A3A6B, #9B7AC4); }
+  .cafe-img-6 { background: linear-gradient(135deg, #3A6B5A, #5AC4A2); }
+  .cafe-tags {
+    position: absolute; top: 12px; left: 12px;
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .cafe-tag {
+    padding: 4px 10px; border-radius: 20px;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em;
+    backdrop-filter: blur(8px);
+  }
+  .tag-wifi { background: rgba(122,140,114,0.85); color: #fff; }
+  .tag-budget { background: rgba(196,125,62,0.85); color: #fff; }
+  .tag-plug { background: rgba(107,63,42,0.85); color: #fff; }
+  .tag-quiet { background: rgba(60,80,120,0.85); color: #fff; }
+  .cafe-body { padding: 20px; }
+  .cafe-name {
+    font-weight: 700; font-size: 1.05rem;
+    color: var(--espresso); margin-bottom: 8px;
+  }
+  .cafe-amenities {
+    display: flex; gap: 8px; margin-bottom: 12px;
+  }
+  .amenity { font-size: 1rem; }
+  .cafe-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+  .cafe-footer { display: flex; gap: 10px; }
+  .btn-detail {
+    flex: 1; padding: 10px; border-radius: var(--radius-sm);
+    background: var(--espresso); color: var(--white);
+    font-size: 0.83rem; font-weight: 600; border: none; cursor: pointer;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-detail:hover { background: var(--brown); }
+  .btn-location {
+    flex: 1; padding: 10px; border-radius: var(--radius-sm);
+    background: transparent; color: var(--espresso);
+    font-size: 0.83rem; font-weight: 500; border: 1.5px solid var(--latte); cursor: pointer;
+    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-location:hover { border-color: var(--caramel); color: var(--caramel); }
+
+  /* Cafe Detail Panel */
+  .detail-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(44,26,14,0.6); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: 24px;
+  }
+  .detail-overlay.open { display: flex; }
+  .detail-panel {
+    background: var(--white); border-radius: 20px;
+    max-width: 800px; width: 100%; max-height: 88vh; overflow-y: auto;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+  }
+  .detail-panel-header {
+    padding: 20px 24px; border-bottom: 1px solid var(--foam);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .back-btn {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--muted); font-size: 0.875rem; cursor: pointer;
+    border: none; background: none; font-family: 'DM Sans', sans-serif;
+    transition: color 0.2s;
+  }
+  .back-btn:hover { color: var(--espresso); }
+  .close-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--foam); border: none; cursor: pointer;
+    font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .close-btn:hover { background: var(--latte); }
+  .detail-panel-body { padding: 28px; }
+  .detail-top { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 28px; }
+  .detail-images {
+    border-radius: var(--radius-sm); overflow: hidden;
+    aspect-ratio: 1; position: relative;
+  }
+  .detail-main-img {
+    width: 100%; height: 80%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem; position: relative;
+  }
+  .detail-thumb-row {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;
+    height: 20%;
+  }
+  .detail-thumb {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; cursor: pointer; opacity: 0.6; transition: opacity 0.2s;
+  }
+  .detail-thumb:hover { opacity: 1; }
+  .detail-info h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem; color: var(--espresso); margin-bottom: 8px;
+  }
+  .star-row { color: var(--caramel); margin-bottom: 16px; font-size: 1.1rem; }
+  .info-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .info-pill {
+    padding: 6px 14px; border-radius: 20px;
+    background: var(--foam); font-size: 0.8rem; color: var(--espresso); font-weight: 500;
+  }
+  .detail-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.75; margin-bottom: 20px; }
+  .amenity-list { list-style: none; }
+  .amenity-list li {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid var(--foam);
+    font-size: 0.9rem; color: var(--espresso);
+  }
+  .amenity-list li:last-child { border-bottom: none; }
+  .amenity-dot {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--foam); display: flex; align-items: center;
+    justify-content: center; font-size: 0.85rem; flex-shrink: 0;
+  }
+  .maps-btn {
+    margin-top: 12px; display: inline-flex; align-items: center; gap: 8px;
+    background: var(--caramel); color: #fff; padding: 10px 20px;
+    border-radius: 10px; border: none; font-size: 0.875rem; font-weight: 600;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+  }
+  .maps-btn:hover { background: var(--brown); }
+  .detail-review { margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--foam); }
+  .detail-review h4 { font-weight: 600; margin-bottom: 18px; color: var(--espresso); }
+  .review-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .review-card {
+    background: var(--cream); border-radius: var(--radius-sm); padding: 18px;
+  }
+  .review-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+  .reviewer { font-size: 0.8rem; font-weight: 600; color: var(--espresso); }
+
+  /* ============================
+     RECOMMENDATION PAGE
+     ============================ */
+  .rec-page { background: var(--white); }
+
+  /* Hero banner */
+  .rec-hero {
+    background: linear-gradient(135deg, var(--espresso) 0%, var(--brown) 60%, var(--caramel) 100%);
+    padding: 80px 48px; text-align: center; position: relative; overflow: hidden;
+  }
+  .rec-hero::before {
+    content: '☕';
+    position: absolute; font-size: 18rem; opacity: 0.05;
+    right: -60px; top: -60px; line-height: 1;
+  }
+  .rec-hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: #fff; margin-bottom: 14px;
+  }
+  .rec-hero p { color: rgba(255,255,255,0.7); font-size: 1.1rem; }
+
+  /* Picks: different layout — horizontal featured cards */
+  .picks-section { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+  .picks-section > .section-label { display: block; }
+  .picks-featured {
+    display: grid; grid-template-columns: 1.6fr 1fr;
+    gap: 28px; margin-bottom: 32px;
+  }
+  .pick-featured-card {
+    border-radius: var(--radius);
+    overflow: hidden; position: relative;
+    min-height: 380px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    box-shadow: var(--shadow-lg); cursor: pointer;
+    transition: all 0.3s;
+  }
+  .pick-featured-card:hover { transform: translateY(-6px); }
+  .pick-bg {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8rem;
+  }
+  .pick-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(44,26,14,0.9) 0%, rgba(44,26,14,0.2) 60%, transparent 100%);
+  }
+  .pick-content {
+    position: relative; z-index: 2; padding: 28px;
+  }
+  .pick-badge {
+    display: inline-block; background: var(--caramel);
+    color: #fff; font-size: 0.7rem; font-weight: 700;
+    padding: 4px 12px; border-radius: 20px; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .pick-content h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem; color: #fff; margin-bottom: 8px;
+  }
+  .pick-content p { color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 16px; }
+  .pick-video-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff; padding: 8px 16px; border-radius: 40px;
+    font-size: 0.82rem; font-weight: 500;
+  }
+  .picks-side { display: flex; flex-direction: column; gap: 16px; }
+  .pick-side-card {
+    border-radius: var(--radius);
+    overflow: hidden; position: relative;
+    min-height: calc((380px - 16px) / 2);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    box-shadow: var(--shadow); cursor: pointer; transition: all 0.3s;
+  }
+  .pick-side-card:hover { transform: translateY(-4px); }
+  .pick-side-card .pick-bg { font-size: 4rem; }
+  .pick-side-card .pick-content h3 { font-size: 1.2rem; }
+  .pick-side-card .pick-content { padding: 18px 20px; }
+
+  /* Why KOKA section */
+  .why-section {
+    background: var(--cream); padding: 80px 48px;
+  }
+  .why-inner { max-width: 1200px; margin: 0 auto; }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 48px; }
+  .why-card {
+    background: var(--white); border-radius: var(--radius);
+    padding: 36px 28px; text-align: center; box-shadow: var(--shadow);
+    transition: all 0.3s;
+  }
+  .why-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .why-icon { font-size: 2.4rem; margin-bottom: 16px; }
+  .why-card h3 { font-weight: 700; margin-bottom: 10px; color: var(--espresso); }
+  .why-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+  /* ============================
+     CONTACT PAGE
+     ============================ */
+  .contact-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: start; }
+  .contact-info h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem; color: var(--espresso); margin-bottom: 14px; line-height: 1.2;
+  }
+  .contact-info p { color: var(--muted); line-height: 1.7; margin-bottom: 36px; }
+  .contact-img {
+    border-radius: var(--radius); overflow: hidden;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--espresso), var(--brown), var(--caramel));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem; box-shadow: var(--shadow-lg);
+  }
+  .contact-detail { display: flex; flex-direction: column; gap: 16px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--foam); border-radius: var(--radius-sm); padding: 14px 16px;
+  }
+  .contact-item-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--caramel); display: flex; align-items: center;
+    justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-item-text strong { display: block; font-size: 0.85rem; color: var(--espresso); font-weight: 600; }
+  .contact-item-text span { font-size: 0.82rem; color: var(--muted); }
+
+  /* Form */
+  .contact-form-wrap {
+    background: var(--white); border-radius: var(--radius);
+    padding: 40px; box-shadow: var(--shadow);
+  }
+  .contact-form-wrap h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem; margin-bottom: 28px; color: var(--espresso);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block; font-size: 0.83rem; font-weight: 600;
+    color: var(--espresso); margin-bottom: 8px; letter-spacing: 0.02em;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 12px 16px; border-radius: var(--radius-sm);
+    border: 1.5px solid var(--latte); background: var(--cream);
+    font-size: 0.9rem; color: var(--espresso);
+    font-family: 'DM Sans', sans-serif; outline: none;
+    transition: all 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--caramel);
+    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(196,125,62,0.1);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select { appearance: none; cursor: pointer; }
+  .form-submit {
+    width: 100%; padding: 15px; border-radius: var(--radius-sm);
+    background: var(--espresso); color: var(--white);
+    font-size: 1rem; font-weight: 600; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: all 0.25s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .form-submit:hover { background: var(--brown); transform: translateY(-2px); }
+  .form-success {
+    display: none; background: #f0f9f0; border: 1.5px solid #a8d8a8;
+    border-radius: var(--radius-sm); padding: 16px 20px;
+    text-align: center; color: #2d6a2d; font-weight: 500;
+    margin-top: 16px;
+  }
+  .form-success.show { display: block; }
+
+  /* ── UTILITIES ── */
+  .text-center { text-align: center; }
+  .mb-0 { margin-bottom: 0 !important; }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .page.active .hero-content,
+  .page.active .section { animation: fadeInUp 0.5s ease both; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .hero { padding: 0 20px; }
+    .hero h1 { font-size: 2.8rem; }
+    .hero-deco { display: none; }
+    .section { padding: 56px 20px; }
+    .details-grid { grid-template-columns: 1fr 1fr; }
+    .video-layout { grid-template-columns: 1fr; }
+    .cafe-grid { grid-template-columns: 1fr 1fr; }
+    .detail-top { grid-template-columns: 1fr; }
+    .contact-layout { grid-template-columns: 1fr; }
+    .picks-featured { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr 1fr; }
+    footer { padding: 40px 20px 24px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    .form-row { grid-template-columns: 1fr; }
+    .review-cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" onclick="showPage('home')">
+    <img src="kokabrown.jpeg" style="width:32px;height:32px;border-radius:50%;object-fit:cover;">
+    KOKA
+  </a>
+  <div class="nav-links">
+    <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+    <a onclick="showPage('explore')" id="nav-explore">Explore</a>
+    <a onclick="showPage('recommendation')" id="nav-recommendation">Recommendation</a>
+    <a onclick="showPage('contact')" id="nav-contact">Contact Us</a>
+  </div>
+</nav>
+
+<!-- ===================== HOME PAGE ===================== -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="hero-tag">☕ Study & Work Friendly</span>
+      <h1>Find Your Perfect<br><em>Cafe</em> to Thrive</h1>
+      <p>KOKA curates the best work-friendly cafes — fast WiFi, ample outlets, great coffee, and the right vibe to get things done.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('explore')">Explore Cafes →</button>
+        <button class="btn-outline" onclick="showPage('recommendation')">Koka's Picks</button>
+      </div>
+    </div>
+    <div class="hero-deco">
+      <div class="hero-stat"><strong>6</strong><span>Curated Cafes</span></div>
+      <div class="hero-stat"><strong>4</strong><span>Categories</span></div>
+      <div class="hero-stat"><strong>100%</strong><span>Work-Ready</span></div>
+    </div>
+  </section>
+
+  <!-- DETAILS -->
+  <section class="section details-section">
+    <span class="section-label">What We Cover</span>
+    <h2 class="section-title">Everything You Need<br>Before You Go</h2>
+    <p class="section-sub">Each cafe is rated across the things that matter most when you need to get work done.</p>
+    <div class="details-grid">
+      <div class="detail-card">
+        <div class="detail-icon rec">⭐</div>
+        <h3>Cafe Recommendations</h3>
+        <p>Hand-picked spots tested for comfort, atmosphere, and productivity by our team.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-icon wifi">📶</div>
+        <h3>WiFi Quality</h3>
+        <p>We test connection speed and reliability so your video calls never drop.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-icon plug">🔌</div>
+        <h3>Cable Plugs</h3>
+        <p>Know exactly how many power outlets are available before your battery dies.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-icon amb">🎵</div>
+        <h3>Ambience</h3>
+        <p>Noise level, seating comfort, and overall vibe — we assess it all for you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="section video-section">
+    <div class="video-layout">
+      <div class="video-player" onclick="alert('Playing KOKA promotion video...')">
+        <div class="play-btn">▶</div>
+      </div>
+      <div class="video-info">
+        <h3>Promotion Video</h3>
+        <p>Watch how KOKA helps students and remote workers discover the ideal spots to focus, create, and collaborate — all around the city.</p>
+        <a href="https://youtube.com" target="_blank" class="yt-btn">
+          <span>▶</span> Watch on YouTube
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:16px;display:flex;align-items:center;gap:10px;color:#fff;font-family:'DM Serif Display',serif;font-size:1.4rem;">
+          <div class="dot">K</div> KOKA
+        </div>
+        <p>Your go-to guide for work and study-friendly cafes. We scout, test, and recommend the best spots so you can focus on what matters.</p>
+      </div>
+      <div class="footer-follow">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a class="social-icon" href="#" title="Instagram">📷</a>
+          <a class="social-icon" href="#" title="Twitter">🐦</a>
+          <a class="social-icon" href="#" title="YouTube">▶</a>
+          <a class="social-icon" href="#" title="TikTok">🎵</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 KOKA. All rights reserved.</span>
+      <span>Made for cafe lovers ☕</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================== EXPLORE PAGE ===================== -->
+<div class="page" id="page-explore">
+  <section class="section">
+    <div class="explore-header">
+      <span class="section-label">Discover</span>
+      <h2 class="section-title">Cafe Categories</h2>
+      <p class="section-sub mb-0">Filter by what matters to you and find your perfect workspace.</p>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterCafes('all', this)">All Cafes</button>
+      <button class="filter-btn" onclick="filterCafes('budget', this)">💰 Budget Friendly</button>
+      <button class="filter-btn" onclick="filterCafes('plug', this)">🔌 Cable Plugs</button>
+      <button class="filter-btn" onclick="filterCafes('wifi', this)">📶 Fast WiFi</button>
+      <button class="filter-btn" onclick="filterCafes('quiet', this)">🤫 Quiet Ambience</button>
+    </div>
+
+    <div class="cafe-grid" id="cafe-grid">
+
+      <!-- Cafe 1 -->
+      <div class="cafe-card" data-tags="wifi,plug" onclick="openDetail(0)">
+        <div class="cafe-img">
+          <div class="cafe-img-inner cafe-img-1">☕</div>
+          <div class="cafe-tags">
+            <span class="cafe-tag tag-wifi">Fast WiFi</span>
+            <span class="cafe-tag tag-plug">Cable Plugs</span>
+          </div>
+        </div>
+        <div class="cafe-body">
+          <div class="cafe-name">Brewlab Studio</div>
+          <div class="cafe-amenities">
+            <span class="amenity" title="WiFi">📶</span>
+            <span class="amenity" title="Plug">🔌</span>
+          </div>
+          <div class="cafe-desc">Minimalist industrial space with blazing fast fiber WiFi. A paradise for developers and designers.</div>
+          <div class="cafe-footer">
+            <button class="btn-detail" onclick="event.stopPropagation();openDetail(0)">Detail</button>
+            <button class="btn-location" onclick="event.stopPropagation();openMaps('Brewlab Studio')">Locations</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cafe 2 -->
+      <div class="cafe-card" data-tags="budget,quiet" onclick="openDetail(1)">
+        <div class="cafe-img">
+          <div class="cafe-img-inner cafe-img-2">🌿</div>
+          <div class="cafe-tags">
+            <span class="cafe-tag tag-budget">Budget</span>
+            <span class="cafe-tag tag-quiet">Quiet</span>
+          </div>
+        </div>
+        <div class="cafe-body">
+          <div class="cafe-name">The Green Page</div>
+          <div class="cafe-amenities">
+            <span class="amenity" title="Budget">💰</span>
+            <span class="amenity" title="Quiet">🤫</span>
+          </div>
+          <div class="cafe-desc">Cozy botanical cafe with affordable menu and library-level silence. Perfect for long study sessions.</div>
+          <div class="cafe-footer">
+            <button class="btn-detail" onclick="event.stopPropagation();openDetail(1)">Detail</button>
+            <button class="btn-location" onclick="event.stopPropagation();openMaps('The Green Page')">Locations</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cafe 3 -->
+      <div class="cafe-card" data-tags="wifi,budget,plug" onclick="openDetail(2)">
+        <div class="cafe-img">
+          <div class="cafe-img-inner cafe-img-3">💙</div>
+          <div class="cafe-tags">
+            <span class="cafe-tag tag-wifi">Fast WiFi</span>
+            <span class="cafe-tag tag-budget">Budget</span>
+          </div>
+        </div>
+        <div class="cafe-body">
+          <div class="cafe-name">Blue Harbor Co.</div>
+          <div class="cafe-amenities">
+            <span class="amenity">📶</span>
+            <span class="amenity">💰</span>
+            <span class="amenity">🔌</span>
+          </div>
+          <div class="cafe-desc">Spacious waterfront cafe with unlimited WiFi refills and power outlets at every seat.</div>
+          <div class="cafe-footer">
+            <button class="btn-detail" onclick="event.stopPropagation();openDetail(2)">Detail</button>
+            <button class="btn-location" onclick="event.stopPropagation();openMaps('Blue Harbor Co.')">Locations</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cafe 4 -->
+      <div class="cafe-card" data-tags="quiet,plug" onclick="openDetail(3)">
+        <div class="cafe-img">
+          <div class="cafe-img-inner cafe-img-4">🏺</div>
+          <div class="cafe-tags">
+            <span class="cafe-tag tag-quiet">Quiet</span>
+            <span class="cafe-tag tag-plug">Cable Plugs</span>
+          </div>
+        </div>
+        <div class="cafe-body">
+          <div class="cafe-name">Terracotta Corner</div>
+          <div class="cafe-amenities">
+            <span class="amenity">🤫</span>
+            <span class="amenity">🔌</span>
+          </div>
+          <div class="cafe-desc">Warm terracotta aesthetic with noise-free zones and plenty of power strips for longer stays.</div>
+          <div class="cafe-footer">
+            <button class="btn-detail" onclick="event.stopPropagation();openDetail(3)">Detail</button>
+            <button class="btn-location" onclick="event.stopPropagation();openMaps('Terracotta Corner')">Locations</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cafe 5 -->
+      <div class="cafe-card" data-tags="budget,wifi" onclick="openDetail(4)">
+        <div class="cafe-img">
+          <div class="cafe-img-inner cafe-img-5">🔮</div>
+          <div class="cafe-tags">
+            <span class="cafe-tag tag-budget">Budget</span>
+            <span class="cafe-tag tag-wifi">Fast WiFi</span>
+          </div>
+        </div>
+        <div class="cafe-body">
+          <div class="cafe-name">Violet Grounds</div>
+          <div class="cafe-amenities">
+            <span class="amenity">💰</span>
+            <span class="amenity">📶</span>
+          </div>
+          <div class="cafe-desc">Student-favorite spot with daily promos, consistent WiFi, and a warm evening vibe.</div>
+          <div class="cafe-footer">
+            <button class="btn-detail" onclick="event.stopPropagation();openDetail(4)">Detail</button>
+            <button class="btn-location" onclick="event.stopPropagation();openMaps('Violet Grounds')">Locations</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cafe 6 -->
+      <div class="cafe-card" data-tags="quiet,wifi,plug,budget" onclick="openDetail(5)">
+        <div class="cafe-img">
+          <div class="cafe-img-inner cafe-img-6">🌊</div>
+          <div class="cafe-tags">
+            <span class="cafe-tag tag-quiet">Quiet</span>
+            <span class="cafe-tag tag-wifi">Fast WiFi</span>
+          </div>
+        </div>
+        <div class="cafe-body">
+          <div class="cafe-name">Mint & Co.</div>
+          <div class="cafe-amenities">
+            <span class="amenity">🤫</span>
+            <span class="amenity">📶</span>
+            <span class="amenity">🔌</span>
+            <span class="amenity">💰</span>
+          </div>
+          <div class="cafe-desc">All-rounder champion — quiet, connected, affordable, and packed with outlets. Our top pick.</div>
+          <div class="cafe-footer">
+            <button class="btn-detail" onclick="event.stopPropagation();openDetail(5)">Detail</button>
+            <button class="btn-location" onclick="event.stopPropagation();openMaps('Mint & Co.')">Locations</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ===================== RECOMMENDATION PAGE ===================== -->
+<div class="page" id="page-recommendation">
+  <div class="rec-hero">
+    <h1>Koka's Picks</h1>
+    <p>Our editors' top choices, ranked by category.</p>
+  </div>
+
+  <div class="picks-section">
+    <span class="section-label">Editor's Choice</span>
+    <h2 class="section-title" style="margin-bottom:32px;">Top Picks by Category</h2>
+
+    <!-- Featured layout: 1 big + 2 side -->
+    <div class="picks-featured">
+      <div class="pick-featured-card">
+        <div class="pick-bg cafe-img-6" style="font-size:10rem;">🌊</div>
+        <div class="pick-content">
+          <span class="pick-badge">🏆 #1 Overall</span>
+          <h3>Mint & Co.</h3>
+          <p>The ultimate work cafe — quiet zones, 200Mbps WiFi, outlets everywhere, and prices that won't break your wallet.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <span class="pick-video-tag">▶ Watch Cafe Tour</span>
+            <button class="btn-primary" style="padding:8px 20px;font-size:0.83rem;" onclick="openDetail(5)">Cafe Detail</button>
+          </div>
+        </div>
+      </div>
+      <div class="picks-side">
+        <div class="pick-side-card">
+          <div class="pick-bg cafe-img-1" style="font-size:5rem;">☕</div>
+          <div class="pick-content">
+            <span class="pick-badge">⚡ Fastest WiFi</span>
+            <h3>Brewlab Studio</h3>
+            <p>Fiber internet, zero lag.</p>
+            <div style="margin-top:10px;">
+              <span class="pick-video-tag" style="font-size:0.75rem;">▶ Watch Tour</span>
+            </div>
+          </div>
+        </div>
+        <div class="pick-side-card">
+          <div class="pick-bg cafe-img-2" style="font-size:5rem;">🌿</div>
+          <div class="pick-content">
+            <span class="pick-badge">💰 Best Value</span>
+            <h3>The Green Page</h3>
+            <p>Quiet, cozy & wallet-friendly.</p>
+            <div style="margin-top:10px;">
+              <span class="pick-video-tag" style="font-size:0.75rem;">▶ Watch Tour</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Horizontal scroll picks -->
+    <h3 style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--espresso);margin-bottom:20px;">More Top Picks</h3>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      <div class="why-card" style="text-align:left;padding:24px;">
+        <div style="font-size:1.8rem;margin-bottom:12px;">🌊</div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--caramel);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Best Ambience</div>
+        <h4 style="font-weight:700;margin-bottom:8px;">Mint & Co.</h4>
+        <p style="font-size:0.84rem;color:var(--muted);margin-bottom:14px;">Tranquil corners and soft lighting make this the most focus-friendly space.</p>
+        <button class="btn-detail" onclick="openDetail(5)">Cafe Detail</button>
+      </div>
+      <div class="why-card" style="text-align:left;padding:24px;">
+        <div style="font-size:1.8rem;margin-bottom:12px;">🏺</div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--caramel);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Most Outlets</div>
+        <h4 style="font-weight:700;margin-bottom:8px;">Terracotta Corner</h4>
+        <p style="font-size:0.84rem;color:var(--muted);margin-bottom:14px;">Power strips at every seat — charge your laptop, phone, and tablet simultaneously.</p>
+        <button class="btn-detail" onclick="openDetail(3)">Cafe Detail</button>
+      </div>
+      <div class="why-card" style="text-align:left;padding:24px;">
+        <div style="font-size:1.8rem;margin-bottom:12px;">💙</div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--caramel);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Best All-Rounder</div>
+        <h4 style="font-weight:700;margin-bottom:8px;">Blue Harbor Co.</h4>
+        <p style="font-size:0.84rem;color:var(--muted);margin-bottom:14px;">Ticks every box — budget, WiFi, and plugs — with a gorgeous view to boot.</p>
+        <button class="btn-detail" onclick="openDetail(2)">Cafe Detail</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why KOKA -->
+  <div class="why-section">
+    <div class="why-inner">
+      <span class="section-label">Our Promise</span>
+      <h2 class="section-title">Why Trust KOKA?</h2>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">🧪</div>
+          <h3>Personally Tested</h3>
+          <p>We visit every cafe ourselves — no paid placements, no sponsored spots. Just honest reviews.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🔄</div>
+          <h3>Always Updated</h3>
+          <p>Cafes change. We re-visit regularly to make sure our recommendations stay accurate.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🎯</div>
+          <h3>Purpose-Built</h3>
+          <p>We rate specifically for work and study — not just for food or aesthetics.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CONTACT PAGE ===================== -->
+<div class="page" id="page-contact">
+  <section class="section">
+    <div class="contact-layout">
+      <!-- Left: info + image -->
+      <div>
+        <span class="section-label">Get In Touch</span>
+        <h2 class="contact-info" style="font-family:'DM Serif Display',serif;font-size:2.4rem;color:var(--espresso);margin-bottom:14px;line-height:1.2;">
+          Have a Cafe to<br>Recommend?
+        </h2>
+        <p style="color:var(--muted);line-height:1.7;margin-bottom:36px;">
+          Know a hidden gem cafe perfect for working or studying? Tell us about it! We also welcome feedback, complaints, and collaboration inquiries.
+        </p>
+
+        <div class="contact-img" style="max-height:280px;margin-bottom:28px;">☕</div>
+
+        <div class="contact-detail">
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div class="contact-item-text">
+              <strong>Location</strong>
+              <span>Batam, Riau Islands, Indonesia</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📧</div>
+            <div class="contact-item-text">
+              <strong>Email</strong>
+              <span>hello@koka.cafe</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📱</div>
+            <div class="contact-item-text">
+              <strong>Instagram</strong>
+              <span>@koka.cafe</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="contact-form-wrap">
+        <h3>Send Us a Message</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" id="contact-name" placeholder="Your full name">
+          </div>
+          <div class="form-group">
+            <label>E-mail *</label>
+            <input type="email" id="contact-email" placeholder="your@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Message Type *</label>
+          <select id="contact-type">
+            <option value="">Select a type...</option>
+            <option value="suggestion">New Cafe Suggestion</option>
+            <option value="complaint">Complaint</option>
+            <option value="collab">Collaboration</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message *</label>
+          <textarea id="contact-message" placeholder="Tell us about the cafe, or write your message here..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">
+          Send Message ✉
+        </button>
+        <div class="form-success" id="form-success">
+          🎉 Thank you! Your message has been sent. We'll get back to you within 1–2 business days.
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== CAFE DETAIL OVERLAY ===================== -->
+<div class="detail-overlay" id="detail-overlay">
+  <div class="detail-panel">
+    <div class="detail-panel-header">
+      <button class="back-btn" onclick="closeDetail()">← Back To Categories</button>
+      <button class="close-btn" onclick="closeDetail()">✕</button>
+    </div>
+    <div class="detail-panel-body" id="detail-body"></div>
+  </div>
+</div>
+
+<script>
+// ── CAFE DATA ──
+const cafes = [
+  {
+    name: 'Brewlab Studio',
+    emoji: '☕', bgClass: 'cafe-img-1',
+    rating: 4.8, reviews: 124,
+    tags: ['Fast WiFi', 'Cable Plugs'],
+    pills: ['Open 7AM–11PM', 'Batam City', '~Rp 35K min. spend'],
+    desc: 'A minimalist industrial-style cafe that doubles as a creative studio. Equipped with blazing-fast fiber optic WiFi and power outlets at every desk. The playlist is always on point — low-fi beats to keep you in flow. Popular among developers, designers, and freelancers.',
+    amenities: [
+      { icon: '📶', label: 'WiFi Speed', value: '~150 Mbps fiber' },
+      { icon: '🔌', label: 'Power Outlets', value: 'Available at all tables' },
+      { icon: '🔊', label: 'Noise Level', value: 'Moderate – background music' },
+      { icon: '🕗', label: 'Hours', value: '7:00 AM – 11:00 PM' },
+    ],
+    reviews: [
+      { text: 'Best WiFi I\'ve ever had in a cafe. Downloaded a 2GB file in minutes!', name: 'Rizky A.' },
+      { text: 'Love the aesthetic and the vibe. Great place to grind on a deadline.', name: 'Sena W.' }
+    ]
+  },
+  {
+    name: 'The Green Page',
+    emoji: '🌿', bgClass: 'cafe-img-2',
+    rating: 4.5, reviews: 89,
+    tags: ['Budget Friendly', 'Quiet Ambience'],
+    pills: ['Open 8AM–10PM', 'Nagoya Hill Area', '~Rp 20K min. spend'],
+    desc: 'A botanical-themed cafe surrounded by indoor plants and soft natural lighting. The menu is refreshingly affordable, and a quiet policy is enforced — making it feel like a cozy reading room. Beloved by students who need deep-focus sessions without distractions.',
+    amenities: [
+      { icon: '💰', label: 'Price Range', value: 'Rp 15K – 40K per item' },
+      { icon: '🤫', label: 'Noise Level', value: 'Very quiet – library-like' },
+      { icon: '🪴', label: 'Vibe', value: 'Botanical, warm, natural' },
+      { icon: '🕗', label: 'Hours', value: '8:00 AM – 10:00 PM' },
+    ],
+    reviews: [
+      { text: 'Finally a cafe where I can hear myself think. This is my new office!', name: 'Dara L.' },
+      { text: 'Prices are super fair for the quality. A gem of a place.', name: 'Andi T.' }
+    ]
+  },
+  {
+    name: 'Blue Harbor Co.',
+    emoji: '💙', bgClass: 'cafe-img-3',
+    rating: 4.7, reviews: 201,
+    tags: ['Fast WiFi', 'Budget Friendly', 'Cable Plugs'],
+    pills: ['Open 7AM–12AM', 'Harbour Bay', '~Rp 25K min. spend'],
+    desc: 'Spacious waterfront cafe with panoramic views of the Batam strait. Blue Harbor Co. checks all boxes — strong WiFi, abundant power outlets, and a budget-friendly menu. The high ceilings and open layout make it one of the most comfortable all-day work cafes.',
+    amenities: [
+      { icon: '📶', label: 'WiFi Speed', value: '~100 Mbps' },
+      { icon: '🔌', label: 'Power Outlets', value: 'Strip outlets at booth seats' },
+      { icon: '💰', label: 'Price Range', value: 'Rp 20K – 55K per item' },
+      { icon: '🌊', label: 'View', value: 'Waterfront / sea view' },
+    ],
+    reviews: [
+      { text: 'The view while working is absolutely unbeatable. Totally worth it.', name: 'Felix O.' },
+      { text: 'Outlets and WiFi check out. Can\'t beat this price for this quality.', name: 'Nisa R.' }
+    ]
+  },
+  {
+    name: 'Terracotta Corner',
+    emoji: '🏺', bgClass: 'cafe-img-4',
+    rating: 4.4, reviews: 67,
+    tags: ['Quiet Ambience', 'Cable Plugs'],
+    pills: ['Open 9AM–10PM', 'Batam Centre', '~Rp 30K min. spend'],
+    desc: 'Warm terracotta interiors with plush seating and thoughtful acoustics. Terracotta Corner offers designated no-phone zones and an impressive ratio of plug points to seats. Great if you need a calm, cozy environment to write, read, or tackle a big project.',
+    amenities: [
+      { icon: '🔌', label: 'Power Outlets', value: 'Every seat has a plug' },
+      { icon: '🤫', label: 'Noise Level', value: 'Quiet – no-phone zones' },
+      { icon: '🎨', label: 'Interior', value: 'Warm terracotta, earthy tones' },
+      { icon: '🕗', label: 'Hours', value: '9:00 AM – 10:00 PM' },
+    ],
+    reviews: [
+      { text: 'The no-phone zone is a game changer for focus. Love this place!', name: 'Maya K.' },
+      { text: 'Interior is beautiful and seats are genuinely comfortable for hours of work.', name: 'Bimo P.' }
+    ]
+  },
+  {
+    name: 'Violet Grounds',
+    emoji: '🔮', bgClass: 'cafe-img-5',
+    rating: 4.3, reviews: 112,
+    tags: ['Budget Friendly', 'Fast WiFi'],
+    pills: ['Open 10AM–11PM', 'Batu Aji', '~Rp 18K min. spend'],
+    desc: 'Student hotspot with daily promos, loyaly card perks, and consistently strong WiFi. Violet Grounds has an eclectic purple-themed aesthetic and a community board for local events. The evening vibe is warm and social while still allowing focused work.',
+    amenities: [
+      { icon: '💰', label: 'Price Range', value: 'Rp 12K – 35K per item' },
+      { icon: '📶', label: 'WiFi Speed', value: '~80 Mbps' },
+      { icon: '🎁', label: 'Perks', value: 'Loyalty card, daily promos' },
+      { icon: '🕗', label: 'Hours', value: '10:00 AM – 11:00 PM' },
+    ],
+    reviews: [
+      { text: 'Best student budget cafe in the city. Promos every day!', name: 'Hana S.' },
+      { text: 'WiFi held up through 3 hours of Zoom calls. Impressed!', name: 'Wira D.' }
+    ]
+  },
+  {
+    name: 'Mint & Co.',
+    emoji: '🌊', bgClass: 'cafe-img-6',
+    rating: 4.9, reviews: 318,
+    tags: ['Quiet Ambience', 'Fast WiFi', 'Cable Plugs', 'Budget Friendly'],
+    pills: ['Open 7AM–11PM', 'Nongsa Area', '~Rp 22K min. spend'],
+    desc: 'Mint & Co. is KOKA\'s all-time top-rated cafe — and for good reason. It combines everything a remote worker or student could want: near-silence, 200Mbps fiber WiFi, outlets at every seat, and prices that make sense. The interior design is fresh, airy, and calming. An absolute gem.',
+    amenities: [
+      { icon: '📶', label: 'WiFi Speed', value: '~200 Mbps – fastest in list' },
+      { icon: '🔌', label: 'Power Outlets', value: 'Every table, multiple ports' },
+      { icon: '🤫', label: 'Noise Level', value: 'Library quiet' },
+      { icon: '💰', label: 'Price Range', value: 'Rp 18K – 45K per item' },
+    ],
+    reviews: [
+      { text: 'This is THE place. I\'ve been coming here for 6 months straight.', name: 'Kevin R.' },
+      { text: 'Perfect in every way. Quiet, fast WiFi, beautiful interior, affordable.', name: 'Laila N.' }
+    ]
+  }
+];
+
+// ── PAGE NAVIGATION ──
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ── CAFE FILTER ──
+function filterCafes(tag, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.cafe-card').forEach(card => {
+    if (tag === 'all') {
+      card.classList.remove('hidden');
+    } else {
+      const cardTags = card.dataset.tags.split(',');
+      card.classList.toggle('hidden', !cardTags.includes(tag));
+    }
+  });
+}
+
+// ── CAFE DETAIL ──
+function openDetail(idx) {
+  const cafe = cafes[idx];
+  const stars = '★'.repeat(Math.floor(cafe.rating)) + (cafe.rating % 1 ? '½' : '');
+
+  const amenitiesHTML = cafe.amenities.map(a => `
+    <li>
+      <div class="amenity-dot">${a.icon}</div>
+      <span><strong>${a.label}:</strong> ${a.value}</span>
+    </li>
+  `).join('');
+
+  const reviewsHTML = cafe.reviews.map(r => `
+    <div class="review-card">
+      <p>"${r.text}"</p>
+      <div class="reviewer">— ${r.name}</div>
+    </div>
+  `).join('');
+
+  const thumbEmojis = ['☕','📸','🌟','🏠'];
+
+  document.getElementById('detail-body').innerHTML = `
+    <div class="detail-top">
+      <div class="detail-images">
+        <div class="detail-main-img ${cafe.bgClass}">
+          <span style="font-size:4rem;position:relative;z-index:1;">${cafe.emoji}</span>
+        </div>
+        <div class="detail-thumb-row">
+          ${thumbEmojis.map(e => `<div class="detail-thumb ${cafe.bgClass}" style="opacity:0.5;">${e}</div>`).join('')}
+        </div>
+      </div>
+      <div class="detail-info">
+        <h2>${cafe.name}</h2>
+        <div class="star-row">${stars} <span style="color:var(--muted);font-size:0.85rem;font-family:'DM Sans',sans-serif;">${cafe.rating} / 5</span></div>
+        <div class="info-pills">${cafe.pills.map(p => `<span class="info-pill">${p}</span>`).join('')}</div>
+        <p class="detail-desc">${cafe.desc}</p>
+        <ul class="amenity-list">${amenitiesHTML}</ul>
+        <button class="maps-btn" onclick="openMaps('${cafe.name}')">📍 Open in Maps</button>
+      </div>
+    </div>
+    <div class="detail-review">
+      <h4>What People Say</h4>
+      <div class="review-cards">${reviewsHTML}</div>
+    </div>
+  `;
+
+  document.getElementById('detail-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail() {
+  document.getElementById('detail-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('detail-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeDetail();
+});
+
+// ── MAPS ──
+function openMaps(name) {
+  const query = encodeURIComponent(name + ' Batam');
+  window.open('https://www.google.com/maps/search/' + query, '_blank');
+}
+
+// ── CONTACT FORM ──
+function submitForm() {
+  const name = document.getElementById('contact-name').value.trim();
+  const email = document.getElementById('contact-email').value.trim();
+  const type = document.getElementById('contact-type').value;
+  const message = document.getElementById('contact-message').value.trim();
+
+  if (!name || !email || !type || !message) {
+    alert('Please fill in all required fields before submitting.');
+    return;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  document.getElementById('contact-name').value = '';
+  document.getElementById('contact-email').value = '';
+  document.getElementById('contact-type').value = '';
+  document.getElementById('contact-message').value = '';
+
+  const success = document.getElementById('form-success');
+  success.classList.add('show');
+  setTimeout(() => success.classList.remove('show'), 6000);
+}
+
+// ── ESC key to close detail ──
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+</script>
+</body>
+</html>
