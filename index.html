@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOKA — Find Your Perfect Work Cafe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="mainNav">
+  <div class="nav-brand" onclick="showPage('home')">
+    <div class="nav-brand-mark">
+      <i data-lucide="coffee"></i>
+    </div>
+    <span class="nav-brand-name">KOKA</span>
+  </div>
+  <div class="nav-links">
+    <a onclick="showPage('home')"           class="active" id="nav-home">Home</a>
+    <a onclick="showPage('explore')"                       id="nav-explore">Explore</a>
+    <a onclick="showPage('recommendation')"                id="nav-recommendation">Recommendation</a>
+    <a onclick="showPage('contact')"                       id="nav-contact">Contact Us</a>
+  </div>
+</nav>
+
+<!-- ╔══════════════════════════════════════╗
+     ║  HOME                                ║
+     ╚══════════════════════════════════════╝ -->
+<div class="page active" id="page-home">
+
+  <section class="hero">
+    <div class="hero-left">
+      <span class="hero-badge">
+        <i data-lucide="map-pin"></i>
+        Study &amp; Work Friendly Cafes — Batam
+      </span>
+      <h1 class="hero-title">
+        Discover Your<br>Perfect <em>Cafe</em><br>to Work
+      </h1>
+      <p class="hero-sub">KOKA curates the finest work-friendly cafes — blazing WiFi, ample outlets, great coffee, and the right ambience to help you focus and thrive.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="showPage('explore')">
+          Explore Cafes <i data-lucide="arrow-right"></i>
+        </button>
+        <button class="btn btn-outline" onclick="showPage('recommendation')">Koka's Picks</button>
+      </div>
+      <div class="hero-stats">
+        <div class="h-stat"><span class="h-stat-n">6</span><span class="h-stat-l">Curated Cafes</span></div>
+        <div class="h-stat"><span class="h-stat-n">4</span><span class="h-stat-l">Categories</span></div>
+        <div class="h-stat"><span class="h-stat-n">100%</span><span class="h-stat-l">Work-Ready</span></div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-right-dots"></div>
+      <div class="hero-right-glow"></div>
+      <div class="hero-right-content">
+
+        <!-- MASCOT HERO — replace src with your file -->
+        <div class="mascot-hero">
+          <div class="mascot-placeholder">
+            <i data-lucide="image"></i>
+            Place your<br>mascot image here
+          </div>
+          <!-- Uncomment and fill in your file:
+          <img src="mascot.png" alt="KOKA Mascot"> -->
+        </div>
+
+        <div class="hero-chips">
+          <div class="hero-chip">
+            <div class="hero-chip-icon"><i data-lucide="wifi"></i></div>
+            <div>
+              <span class="hero-chip-title">Blazing Fast WiFi</span>
+              <span class="hero-chip-sub">Up to 200 Mbps fiber</span>
+            </div>
+            <span class="hero-chip-pill">Verified</span>
+          </div>
+          <div class="hero-chip">
+            <div class="hero-chip-icon"><i data-lucide="plug"></i></div>
+            <div>
+              <span class="hero-chip-title">Power at Every Seat</span>
+              <span class="hero-chip-sub">Multiple outlets per table</span>
+            </div>
+            <span class="hero-chip-pill">Verified</span>
+          </div>
+          <div class="hero-chip">
+            <div class="hero-chip-icon"><i data-lucide="volume-x"></i></div>
+            <div>
+              <span class="hero-chip-title">Quiet Focus Zones</span>
+              <span class="hero-chip-sub">Library-level silence</span>
+            </div>
+            <span class="hero-chip-pill">Verified</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-sec sec">
+    <div class="wrap">
+      <div class="features-head">
+        <div>
+          <span class="eyebrow">What We Cover</span>
+          <h2 class="display">Everything You Need<br>Before You Go</h2>
+        </div>
+        <p class="body-text">Each cafe is personally visited and rated across four dimensions that matter most for productive remote work and focused study sessions.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feat-card">
+          <div class="feat-icon"><i data-lucide="star"></i></div>
+          <h3>Curated Recommendations</h3>
+          <p>Hand-selected spots tested for comfort, atmosphere, and day-long productivity.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><i data-lucide="wifi"></i></div>
+          <h3>WiFi Quality</h3>
+          <p>Speed-tested connections so your calls, uploads, and downloads never lag.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><i data-lucide="plug"></i></div>
+          <h3>Cable &amp; Power Plugs</h3>
+          <p>Know exactly how many outlets are available before your battery dies.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><i data-lucide="volume-x"></i></div>
+          <h3>Ambience Rating</h3>
+          <p>Noise level, seating comfort, lighting, and overall vibe — assessed thoroughly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="sec" style="background:var(--ivory);">
+    <div class="wrap">
+      <div class="video-layout">
+        <div class="video-player" onclick="alert('Playing KOKA video...')">
+          <div class="v-bg"></div>
+          <div class="v-play">
+            <div class="v-play-btn"><i data-lucide="play"></i></div>
+          </div>
+          <span class="v-label">KOKA — Promotion Video</span>
+          <!-- Mascot peek on hover -->
+          <div class="v-mascot">
+            <div class="v-mascot-ph">
+              <i data-lucide="image" style="width:18px;height:18px;opacity:.3;"></i>
+            </div>
+            <!-- Uncomment: <img src="mascot.png" alt=""> -->
+          </div>
+        </div>
+        <div class="video-info">
+          <span class="eyebrow">Watch</span>
+          <h3>See What KOKA<br>Is All About</h3>
+          <div class="hr-line"></div>
+          <p>Watch how KOKA helps students and remote workers discover ideal spots to focus, create, and collaborate across the city.</p>
+          <a href="https://youtube.com" target="_blank" class="yt-btn">
+            <i data-lucide="youtube"></i> Watch on YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-inner">
+      <div>
+        <div class="foot-logo">
+          <div class="foot-logo-mark"><i data-lucide="coffee"></i></div>
+          <span class="foot-logo-name">KOKA</span>
+        </div>
+        <p class="foot-desc">Your go-to guide for work and study-friendly cafes. We scout, test, and recommend the best spots so you can focus on what matters most.</p>
+      </div>
+      <div>
+        <p class="foot-social-label">Follow Us</p>
+        <div class="foot-socials">
+          <a class="foot-soc" href="#"><i data-lucide="instagram"></i></a>
+          <a class="foot-soc" href="#"><i data-lucide="twitter"></i></a>
+          <a class="foot-soc" href="#"><i data-lucide="youtube"></i></a>
+          <a class="foot-soc" href="#"><i data-lucide="music"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 KOKA. All rights reserved.</span>
+      <span>Crafted for cafe lovers ☕</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ╔══════════════════════════════════════╗
+     ║  EXPLORE                             ║
+     ╚══════════════════════════════════════╝ -->
+<div class="page" id="page-explore">
+  <div class="exp-hero">
+    <div class="exp-hero-dots"></div>
+    <div class="exp-hero-inner">
+      <span class="eyebrow" style="color:var(--caramel-lt);">Discover</span>
+      <h1>Cafe <em>Categories</em></h1>
+      <p>Filter by what matters most to find your perfect workspace.</p>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <span class="filter-label">Filter</span>
+    <button class="f-btn on"  onclick="toggleFilter('all',this)"    id="f-all">    <i data-lucide="layout-grid"></i> All Cafes</button>
+    <button class="f-btn"     onclick="toggleFilter('wifi',this)"   id="f-wifi">   <i data-lucide="wifi"></i> Fast WiFi</button>
+    <button class="f-btn"     onclick="toggleFilter('budget',this)" id="f-budget"> <i data-lucide="coins"></i> Budget Friendly</button>
+    <button class="f-btn"     onclick="toggleFilter('plug',this)"   id="f-plug">   <i data-lucide="plug"></i> Cable Plugs</button>
+    <button class="f-btn"     onclick="toggleFilter('quiet',this)"  id="f-quiet">  <i data-lucide="volume-x"></i> Quiet Ambience</button>
+    <span class="filter-count" id="filterCount">Showing 6 cafes</span>
+  </div>
+
+  <div class="cafe-sec">
+    <div class="cafe-grid" id="cafeGrid">
+
+      <div class="cafe-card" data-tags="wifi,plug" onclick="openDetail(0)">
+        <div class="cafe-img">
+          <div class="cafe-img-bg ci1"><i data-lucide="coffee"></i></div>
+          <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div><!-- <img src="mascot.png"> --></div>
+          <div class="cafe-tags-row">
+            <span class="tag tag-wifi"><i data-lucide="wifi"></i> Fast WiFi</span>
+            <span class="tag tag-plug"><i data-lucide="plug"></i> Plugs</span>
+          </div>
+        </div>
+        <div class="cafe-body">
+          <div class="cafe-name">Brewlab Studio</div>
+          <div class="cafe-loc"><i data-lucide="map-pin"></i> Batam City</div>
+          <div class="cafe-amens">
+            <span class="cafe-amen"><i data-lucide="wifi"></i> ~150 Mbps</span>
+            <span class="cafe-amen"><i data-lucide="plug"></i> All tables</span>
+            <span class="cafe-amen"><i data-lucide="clock"></i> 7AM–11PM</span>
+          </div>
+          <p class="cafe-desc">Minimalist industrial space with blazing-fast fiber WiFi. A paradise for developers and designers.</p>
+          <div class="cafe-foot">
+            <button class="c-btn-p" onclick="event.stopPropagation();openDetail(0)">Detail</button>
+            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Brewlab Studio')">Locations</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cafe-card" data-tags="budget,quiet" onclick="openDetail(1)">
+        <div class="cafe-img">
+          <div class="cafe-img-bg ci2"><i data-lucide="leaf"></i></div>
+          <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
+          <div class="cafe-tags-row">
+            <span class="tag tag-budget"><i data-lucide="coins"></i> Budget</span>
+            <span class="tag tag-quiet"><i data-lucide="volume-x"></i> Quiet</span>
+          </div>
+        </div>
+        <div class="cafe-body">
+          <div class="cafe-name">The Green Page</div>
+          <div class="cafe-loc"><i data-lucide="map-pin"></i> Nagoya Hill Area</div>
+          <div class="cafe-amens">
+            <span class="cafe-amen"><i data-lucide="coins"></i> Rp 15–40K</span>
+            <span class="cafe-amen"><i data-lucide="volume-x"></i> Very quiet</span>
+            <span class="cafe-amen"><i data-lucide="clock"></i> 8AM–10PM</span>
+          </div>
+          <p class="cafe-desc">Botanical cafe with library-level silence and an affordable menu. Perfect for long study sessions.</p>
+          <div class="cafe-foot">
+            <button class="c-btn-p" onclick="event.stopPropagation();openDetail(1)">Detail</button>
+            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('The Green Page')">Locations</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cafe-card" data-tags="wifi,budget,plug" onclick="openDetail(2)">
+        <div class="cafe-img">
+          <div class="cafe-img-bg ci3"><i data-lucide="anchor"></i></div>
+          <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
+          <div class="cafe-tags-row">
+            <span class="tag tag-wifi"><i data-lucide="wifi"></i> Fast WiFi</span>
+            <span class="tag tag-budget"><i data-lucide="coins"></i> Budget</span>
+          </div>
+        </div>
+        <div class="cafe-body">
+          <div class="cafe-name">Blue Harbor Co.</div>
+          <div class="cafe-loc"><i data-lucide="map-pin"></i> Harbour Bay</div>
+          <div class="cafe-amens">
+            <span class="cafe-amen"><i data-lucide="wifi"></i> ~100 Mbps</span>
+            <span class="cafe-amen"><i data-lucide="plug"></i> Booth seats</span>
+            <span class="cafe-amen"><i data-lucide="clock"></i> 7AM–12AM</span>
+          </div>
+          <p class="cafe-desc">Spacious waterfront cafe with panoramic sea views, strong WiFi, and a budget-friendly menu.</p>
+          <div class="cafe-foot">
+            <button class="c-btn-p" onclick="event.stopPropagation();openDetail(2)">Detail</button>
+            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Blue Harbor Co.')">Locations</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cafe-card" data-tags="quiet,plug" onclick="openDetail(3)">
+        <div class="cafe-img">
+          <div class="cafe-img-bg ci4"><i data-lucide="home"></i></div>
+          <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
+          <div class="cafe-tags-row">
+            <span class="tag tag-quiet"><i data-lucide="volume-x"></i> Quiet</span>
+            <span class="tag tag-plug"><i data-lucide="plug"></i> Plugs</span>
+          </div>
+        </div>
+        <div class="cafe-body">
+          <div class="cafe-name">Terracotta Corner</div>
+          <div class="cafe-loc"><i data-lucide="map-pin"></i> Batam Centre</div>
+          <div class="cafe-amens">
+            <span class="cafe-amen"><i data-lucide="plug"></i> Every seat</span>
+            <span class="cafe-amen"><i data-lucide="volume-x"></i> No-phone zone</span>
+            <span class="cafe-amen"><i data-lucide="clock"></i> 9AM–10PM</span>
+          </div>
+          <p class="cafe-desc">Warm terracotta interiors with quiet zones and a power outlet at every single seat.</p>
+          <div class="cafe-foot">
+            <button class="c-btn-p" onclick="event.stopPropagation();openDetail(3)">Detail</button>
+            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Terracotta Corner')">Locations</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cafe-card" data-tags="budget,wifi" onclick="openDetail(4)">
+        <div class="cafe-img">
+          <div class="cafe-img-bg ci5"><i data-lucide="sparkles"></i></div>
+          <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
+          <div class="cafe-tags-row">
+            <span class="tag tag-budget"><i data-lucide="coins"></i> Budget</span>
+            <span class="tag tag-wifi"><i data-lucide="wifi"></i> Fast WiFi</span>
+          </div>
+        </div>
+        <div class="cafe-body">
+          <div class="cafe-name">Violet Grounds</div>
+          <div class="cafe-loc"><i data-lucide="map-pin"></i> Batu Aji</div>
+          <div class="cafe-amens">
+            <span class="cafe-amen"><i data-lucide="coins"></i> Rp 12–35K</span>
+            <span class="cafe-amen"><i data-lucide="wifi"></i> ~80 Mbps</span>
+            <span class="cafe-amen"><i data-lucide="clock"></i> 10AM–11PM</span>
+          </div>
+          <p class="cafe-desc">Student favourite with daily promos, loyalty perks, and reliably fast WiFi all day long.</p>
+          <div class="cafe-foot">
+            <button class="c-btn-p" onclick="event.stopPropagation();openDetail(4)">Detail</button>
+            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Violet Grounds')">Locations</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cafe-card" data-tags="quiet,wifi,plug,budget" onclick="openDetail(5)">
+        <div class="cafe-img">
+          <div class="cafe-img-bg ci6"><i data-lucide="droplets"></i></div>
+          <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
+          <div class="cafe-tags-row">
+            <span class="tag tag-quiet"><i data-lucide="volume-x"></i> Quiet</span>
+            <span class="tag tag-wifi"><i data-lucide="wifi"></i> 200 Mbps</span>
+          </div>
+        </div>
+        <div class="cafe-body">
+          <div class="cafe-name">Mint &amp; Co.</div>
+          <div class="cafe-loc"><i data-lucide="map-pin"></i> Nongsa Area</div>
+          <div class="cafe-amens">
+            <span class="cafe-amen"><i data-lucide="wifi"></i> ~200 Mbps</span>
+            <span class="cafe-amen"><i data-lucide="plug"></i> All tables</span>
+            <span class="cafe-amen"><i data-lucide="clock"></i> 7AM–11PM</span>
+          </div>
+          <p class="cafe-desc">Our #1 pick — quiet, ultra-fast WiFi, outlets everywhere, and the best prices in town.</p>
+          <div class="cafe-foot">
+            <button class="c-btn-p" onclick="event.stopPropagation();openDetail(5)">Detail</button>
+            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Mint &amp; Co.')">Locations</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════╗
+     ║  RECOMMENDATION                      ║
+     ╚══════════════════════════════════════╝ -->
+<div class="page" id="page-recommendation">
+
+  <div class="rec-banner">
+    <div class="rec-banner-dots"></div>
+    <div class="rec-banner-inner">
+      <div>
+        <span class="eyebrow" style="color:var(--caramel-lt);">Editor's Choice</span>
+        <h1>Koka's <em>Picks</em></h1>
+        <p>Our top-rated cafes, ranked by what they do best.</p>
+      </div>
+      <!-- Mascot recommendation banner -->
+      <div class="rec-mascot">
+        <div class="rec-mascot-ph">
+          <i data-lucide="image"></i>
+          mascot here
+        </div>
+        <!-- Uncomment: <img src="mascot.png" alt=""> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="picks-sec">
+    <div class="picks-editorial">
+      <div class="pick-card pick-large ci6">
+        <div class="pick-overlay"></div>
+        <div class="pick-content">
+          <span class="pick-badge"><i data-lucide="trophy"></i> #1 Overall</span>
+          <div class="pick-title">Mint &amp; Co.</div>
+          <p class="pick-sub">The ultimate work cafe — quiet zones, 200 Mbps WiFi, outlets at every seat, and prices that make sense.</p>
+          <div class="pick-actions">
+            <button class="pick-action-btn" onclick="openDetail(5)"><i data-lucide="info"></i> Detail</button>
+            <button class="pick-action-btn"><i data-lucide="play"></i> Watch Tour</button>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div class="pick-card pick-small ci1">
+          <div class="pick-overlay"></div>
+          <div class="pick-content">
+            <span class="pick-badge"><i data-lucide="zap"></i> Fastest WiFi</span>
+            <div class="pick-title">Brewlab Studio</div>
+            <div class="pick-actions">
+              <button class="pick-action-btn" onclick="openDetail(0)"><i data-lucide="info"></i> Detail</button>
+            </div>
+          </div>
+        </div>
+        <div class="pick-card pick-small ci2">
+          <div class="pick-overlay"></div>
+          <div class="pick-content">
+            <span class="pick-badge"><i data-lucide="coins"></i> Best Value</span>
+            <div class="pick-title">The Green Page</div>
+            <div class="pick-actions">
+              <button class="pick-action-btn" onclick="openDetail(1)"><i data-lucide="info"></i> Detail</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="more-picks-title">More Top Picks</p>
+    <div class="more-grid">
+      <div class="mpick-card">
+        <div class="mpick-icon"><i data-lucide="volume-x"></i></div>
+        <div class="mpick-label">Best Ambience</div>
+        <h4>Mint &amp; Co.</h4>
+        <p>Tranquil corners and soft lighting — the most focus-friendly space we've tested.</p>
+        <button class="btn btn-primary btn-sm" onclick="openDetail(5)">Cafe Detail</button>
+      </div>
+      <div class="mpick-card">
+        <div class="mpick-icon"><i data-lucide="plug"></i></div>
+        <div class="mpick-label">Most Outlets</div>
+        <h4>Terracotta Corner</h4>
+        <p>Power strips at every seat — charge your laptop, phone, and tablet simultaneously.</p>
+        <button class="btn btn-primary btn-sm" onclick="openDetail(3)">Cafe Detail</button>
+      </div>
+      <div class="mpick-card">
+        <div class="mpick-icon"><i data-lucide="award"></i></div>
+        <div class="mpick-label">Best All-Rounder</div>
+        <h4>Blue Harbor Co.</h4>
+        <p>Ticks every box — budget, WiFi, and plugs — with a stunning waterfront view.</p>
+        <button class="btn btn-primary btn-sm" onclick="openDetail(2)">Cafe Detail</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="why-sec">
+    <div class="why-inner">
+      <span class="eyebrow">Our Promise</span>
+      <h2 class="display">Why Trust KOKA?</h2>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon"><i data-lucide="search"></i></div>
+          <h3>Personally Tested</h3>
+          <p>We visit every cafe ourselves — no paid placements or sponsored spots. Just honest, unbiased reviews.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i data-lucide="refresh-cw"></i></div>
+          <h3>Always Updated</h3>
+          <p>Cafes change. We revisit regularly to ensure our recommendations stay accurate and trustworthy.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i data-lucide="target"></i></div>
+          <h3>Purpose-Built</h3>
+          <p>We rate specifically for work and study productivity — not just food, aesthetics, or hype.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ╔══════════════════════════════════════╗
+     ║  CONTACT                             ║
+     ╚══════════════════════════════════════╝ -->
+<div class="page" id="page-contact">
+  <div class="contact-banner">
+    <div class="contact-banner-dots"></div>
+    <div class="contact-banner-inner">
+      <span class="eyebrow" style="color:var(--caramel-lt);">Get In Touch</span>
+      <h2>Have a Cafe to Recommend?</h2>
+      <p>Suggestions, complaints, collaborations — we read every message.</p>
+    </div>
+  </div>
+
+  <div class="contact-strip">
+    <div class="cs-cell">
+      <div class="cs-icon"><i data-lucide="map-pin"></i></div>
+      <div><div class="cs-label">Location</div><div class="cs-val">Batam, Riau Islands, Indonesia</div></div>
+    </div>
+    <div class="cs-cell">
+      <div class="cs-icon"><i data-lucide="mail"></i></div>
+      <div><div class="cs-label">Email</div><div class="cs-val">hello@koka.cafe</div></div>
+    </div>
+    <div class="cs-cell">
+      <div class="cs-icon"><i data-lucide="instagram"></i></div>
+      <div><div class="cs-label">Instagram</div><div class="cs-val">@koka.cafe</div></div>
+    </div>
+  </div>
+
+  <div class="contact-body">
+    <div class="contact-left">
+      <div class="contact-art">
+        <div class="contact-art-glow"></div>
+        <!-- Mascot contact -->
+        <div class="contact-mascot">
+          <div class="contact-mascot-ph">
+            <i data-lucide="image"></i>
+            mascot here
+          </div>
+          <!-- Uncomment: <img src="mascot.png" alt="KOKA Mascot"> -->
+        </div>
+      </div>
+      <div class="contact-info-card">
+        <h3>Why Write to Us?</h3>
+        <div class="ctypes">
+          <div class="ctype"><div class="ctype-dot"></div> Suggest a new cafe you love</div>
+          <div class="ctype"><div class="ctype-dot"></div> Report outdated information</div>
+          <div class="ctype"><div class="ctype-dot"></div> Partner or collaborate with us</div>
+          <div class="ctype"><div class="ctype-dot"></div> Share feedback or complaints</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <h3>Send Us a Message</h3>
+      <p class="contact-right-sub">We typically respond within 1–2 business days.</p>
+      <div class="form-row">
+        <div class="form-g">
+          <label>Full Name *</label>
+          <input type="text" id="cName" placeholder="Your full name">
+        </div>
+        <div class="form-g">
+          <label>E-mail *</label>
+          <input type="email" id="cEmail" placeholder="your@email.com">
+        </div>
+      </div>
+      <div class="form-g">
+        <label>Message Type *</label>
+        <select id="cType">
+          <option value="">Select a type...</option>
+          <option value="suggestion">New Cafe Suggestion</option>
+          <option value="complaint">Complaint</option>
+          <option value="collab">Collaboration</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-g">
+        <label>Message *</label>
+        <textarea id="cMsg" placeholder="Tell us about the cafe, or share your message here..."></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm()">
+        <i data-lucide="send"></i> Send Message
+      </button>
+      <div class="form-ok" id="formOk">
+        🎉 Thank you! Your message was sent. We'll be in touch soon.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════╗
+     ║  CAFE DETAIL OVERLAY                 ║
+     ╚══════════════════════════════════════╝ -->
+<div class="overlay" id="overlay">
+  <div class="dpanel">
+    <div class="dpanel-head">
+      <button class="dpanel-back" onclick="closeDetail()">
+        <i data-lucide="arrow-left"></i> Back to Categories
+      </button>
+      <button class="dpanel-close" onclick="closeDetail()">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <div class="dpanel-body" id="dpanelBody"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
