@@ -8,6 +8,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <link rel="stylesheet" href="style.css">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZWN94CQ54J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', 'G-ZWN94CQ54J');
+</script>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
 </head>
 <body>
 
@@ -15,7 +29,8 @@
 <nav id="mainNav">
   <div class="nav-brand" onclick="showPage('home')">
     <div class="nav-brand-mark">
-      <i data-lucide="coffee"></i>
+      <img src="mascot.png" alt="KOKA Mascot">
+      
     </div>
     <span class="nav-brand-name">KOKA</span>
   </div>
@@ -63,8 +78,7 @@
         <!-- MASCOT HERO — replace src with your file -->
         <div class="mascot-hero">
           <div class="mascot-placeholder">
-            <i data-lucide="image"></i>
-            Place your<br>mascot image here
+            <img src="mascot.png" alt="KOKA Mascot">
           </div>
           <!-- Uncomment and fill in your file:
           <img src="mascot.png" alt="KOKA Mascot"> -->
@@ -74,8 +88,8 @@
           <div class="hero-chip">
             <div class="hero-chip-icon"><i data-lucide="wifi"></i></div>
             <div>
-              <span class="hero-chip-title">Blazing Fast WiFi</span>
-              <span class="hero-chip-sub">Up to 200 Mbps fiber</span>
+              <span class="hero-chip-title"> Blazing Fast WiFi</span>
+              <span class="hero-chip-sub">Up to 150 mbps</span>
             </div>
             <span class="hero-chip-pill">Verified</span>
           </div>
@@ -221,7 +235,7 @@
 
       <div class="cafe-card" data-tags="wifi,plug" onclick="openDetail(0)">
         <div class="cafe-img">
-          <div class="cafe-img-bg ci1"><i data-lucide="coffee"></i></div>
+          <img src ="cafe/brew1.jpeg">
           <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div><!-- <img src="mascot.png"> --></div>
           <div class="cafe-tags-row">
             <span class="tag tag-wifi"><i data-lucide="wifi"></i> Fast WiFi</span>
@@ -229,12 +243,12 @@
           </div>
         </div>
         <div class="cafe-body">
-          <div class="cafe-name">Brewlab Studio</div>
-          <div class="cafe-loc"><i data-lucide="map-pin"></i> Batam City</div>
+          <div class="cafe-name">Brew By Dy's</div>
+          <div class="cafe-loc"><i data-lucide="map-pin"></i>Pasir Putih</div>
           <div class="cafe-amens">
             <span class="cafe-amen"><i data-lucide="wifi"></i> ~150 Mbps</span>
             <span class="cafe-amen"><i data-lucide="plug"></i> All tables</span>
-            <span class="cafe-amen"><i data-lucide="clock"></i> 7AM–11PM</span>
+            <span class="cafe-amen"><i data-lucide="clock"></i> 8AM–10PM</span>
           </div>
           <p class="cafe-desc">Minimalist industrial space with blazing-fast fiber WiFi. A paradise for developers and designers.</p>
           <div class="cafe-foot">
@@ -244,22 +258,22 @@
         </div>
       </div>
 
-      <div class="cafe-card" data-tags="budget,quiet" onclick="openDetail(1)">
+      <div class="cafe-card" data-tags="budget,plug,wifi" onclick="openDetail(1)">
         <div class="cafe-img">
-          <div class="cafe-img-bg ci2"><i data-lucide="leaf"></i></div>
+          <img src ="cafe/fey1.jpeg">
           <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
           <div class="cafe-tags-row">
             <span class="tag tag-budget"><i data-lucide="coins"></i> Budget</span>
-            <span class="tag tag-quiet"><i data-lucide="volume-x"></i> Quiet</span>
+            <span class="tag tag-wifi"><i data-lucide="wifi"></i> WiFi</span>
           </div>
         </div>
         <div class="cafe-body">
-          <div class="cafe-name">The Green Page</div>
-          <div class="cafe-loc"><i data-lucide="map-pin"></i> Nagoya Hill Area</div>
+          <div class="cafe-name">Fey's Patisserie</div>
+          <div class="cafe-loc"><i data-lucide="map-pin"></i> Teluk Tering</div>
           <div class="cafe-amens">
-            <span class="cafe-amen"><i data-lucide="coins"></i> Rp 15–40K</span>
-            <span class="cafe-amen"><i data-lucide="volume-x"></i> Very quiet</span>
-            <span class="cafe-amen"><i data-lucide="clock"></i> 8AM–10PM</span>
+            <span class="cafe-amen"><i data-lucide="coins"></i> Rp 15–43K</span>
+            <span class="cafe-amen"><i data-lucide="volume-x"></i> Quiet</span>
+            <span class="cafe-amen"><i data-lucide="clock"></i> 10AM–10PM</span>
           </div>
           <p class="cafe-desc">Botanical cafe with library-level silence and an affordable menu. Perfect for long study sessions.</p>
           <div class="cafe-foot">
@@ -271,20 +285,20 @@
 
       <div class="cafe-card" data-tags="wifi,budget,plug" onclick="openDetail(2)">
         <div class="cafe-img">
-          <div class="cafe-img-bg ci3"><i data-lucide="anchor"></i></div>
+          <img src ="cafe/goffee1.jpeg">
           <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
           <div class="cafe-tags-row">
             <span class="tag tag-wifi"><i data-lucide="wifi"></i> Fast WiFi</span>
-            <span class="tag tag-budget"><i data-lucide="coins"></i> Budget</span>
+            <span class="tag tag-budget"><i data-lucide="plug"></i> Plugs</span>
           </div>
         </div>
         <div class="cafe-body">
-          <div class="cafe-name">Blue Harbor Co.</div>
-          <div class="cafe-loc"><i data-lucide="map-pin"></i> Harbour Bay</div>
+          <div class="cafe-name">Goffee Batam</div>
+          <div class="cafe-loc"><i data-lucide="map-pin"></i> Teluk Tering</div>
           <div class="cafe-amens">
-            <span class="cafe-amen"><i data-lucide="wifi"></i> ~100 Mbps</span>
-            <span class="cafe-amen"><i data-lucide="plug"></i> Booth seats</span>
-            <span class="cafe-amen"><i data-lucide="clock"></i> 7AM–12AM</span>
+            <span class="cafe-amen"><i data-lucide="wifi"></i> ~48-52 Mbps</span>
+            <span class="cafe-amen"><i data-lucide="plug"></i> All tables</span>
+            <span class="cafe-amen"><i data-lucide="clock"></i> 9AM–12AM</span>
           </div>
           <p class="cafe-desc">Spacious waterfront cafe with panoramic sea views, strong WiFi, and a budget-friendly menu.</p>
           <div class="cafe-foot">
@@ -296,7 +310,7 @@
 
       <div class="cafe-card" data-tags="quiet,plug" onclick="openDetail(3)">
         <div class="cafe-img">
-          <div class="cafe-img-bg ci4"><i data-lucide="home"></i></div>
+          <img src ="cafe/sharlotte1.jpeg">
           <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
           <div class="cafe-tags-row">
             <span class="tag tag-quiet"><i data-lucide="volume-x"></i> Quiet</span>
@@ -304,12 +318,12 @@
           </div>
         </div>
         <div class="cafe-body">
-          <div class="cafe-name">Terracotta Corner</div>
-          <div class="cafe-loc"><i data-lucide="map-pin"></i> Batam Centre</div>
+          <div class="cafe-name">Sharlotte Cafe</div>
+          <div class="cafe-loc"><i data-lucide="map-pin"></i> Taman Baloi</div>
           <div class="cafe-amens">
-            <span class="cafe-amen"><i data-lucide="plug"></i> Every seat</span>
-            <span class="cafe-amen"><i data-lucide="volume-x"></i> No-phone zone</span>
-            <span class="cafe-amen"><i data-lucide="clock"></i> 9AM–10PM</span>
+            <span class="cafe-amen"><i data-lucide="plug"></i> Some Spots</span>
+            <span class="cafe-amen"><i data-lucide="volume-x"></i> Quiet vibes</span>
+            <span class="cafe-amen"><i data-lucide="clock"></i> 10AM–10PM</span>
           </div>
           <p class="cafe-desc">Warm terracotta interiors with quiet zones and a power outlet at every single seat.</p>
           <div class="cafe-foot">
@@ -321,7 +335,7 @@
 
       <div class="cafe-card" data-tags="budget,wifi" onclick="openDetail(4)">
         <div class="cafe-img">
-          <div class="cafe-img-bg ci5"><i data-lucide="sparkles"></i></div>
+          <img src ="cafe/kobie1.jpeg">
           <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
           <div class="cafe-tags-row">
             <span class="tag tag-budget"><i data-lucide="coins"></i> Budget</span>
@@ -329,11 +343,11 @@
           </div>
         </div>
         <div class="cafe-body">
-          <div class="cafe-name">Violet Grounds</div>
-          <div class="cafe-loc"><i data-lucide="map-pin"></i> Batu Aji</div>
+          <div class="cafe-name">Kobie Coffee Tiban</div>
+          <div class="cafe-loc"><i data-lucide="map-pin"></i> Tiban</div>
           <div class="cafe-amens">
-            <span class="cafe-amen"><i data-lucide="coins"></i> Rp 12–35K</span>
-            <span class="cafe-amen"><i data-lucide="wifi"></i> ~80 Mbps</span>
+            <span class="cafe-amen"><i data-lucide="coins"></i> Rp 12–52K</span>
+            <span class="cafe-amen"><i data-lucide="wifi"></i> ~16-21 Mbps</span>
             <span class="cafe-amen"><i data-lucide="clock"></i> 10AM–11PM</span>
           </div>
           <p class="cafe-desc">Student favourite with daily promos, loyalty perks, and reliably fast WiFi all day long.</p>
@@ -346,7 +360,7 @@
 
       <div class="cafe-card" data-tags="quiet,wifi,plug,budget" onclick="openDetail(5)">
         <div class="cafe-img">
-          <div class="cafe-img-bg ci6"><i data-lucide="droplets"></i></div>
+          <img src ="cafe/local1.jpeg">
           <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
           <div class="cafe-tags-row">
             <span class="tag tag-quiet"><i data-lucide="volume-x"></i> Quiet</span>
@@ -354,12 +368,12 @@
           </div>
         </div>
         <div class="cafe-body">
-          <div class="cafe-name">Mint &amp; Co.</div>
-          <div class="cafe-loc"><i data-lucide="map-pin"></i> Nongsa Area</div>
+          <div class="cafe-name">Local Cafe</div>
+          <div class="cafe-loc"><i data-lucide="map-pin"></i> Baloi Indah</div>
           <div class="cafe-amens">
-            <span class="cafe-amen"><i data-lucide="wifi"></i> ~200 Mbps</span>
-            <span class="cafe-amen"><i data-lucide="plug"></i> All tables</span>
-            <span class="cafe-amen"><i data-lucide="clock"></i> 7AM–11PM</span>
+            <span class="cafe-amen"><i data-lucide="wifi"></i> ~23-28 Mbps</span>
+            <span class="cafe-amen"><i data-lucide="plug"></i> Some Spots</span>
+            <span class="cafe-amen"><i data-lucide="clock"></i> 8AM–10.30PM</span>
           </div>
           <p class="cafe-desc">Our #1 pick — quiet, ultra-fast WiFi, outlets everywhere, and the best prices in town.</p>
           <div class="cafe-foot">
