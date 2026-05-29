@@ -8,6 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZWN94CQ54J"></script>
@@ -19,8 +21,6 @@
   gtag('js', new Date());
   gtag('config', 'G-ZWN94CQ54J');
 </script>
-
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
 </head>
 <body>
@@ -54,7 +54,7 @@
         Study &amp; Work Friendly Cafes — Batam
       </span>
       <h1 class="hero-title">
-        Discover Your<br>Perfect <em>Cafe</em><br>to Work
+        Discover Your<br>Perfect <em>Cafe</em><br>to Work n Study
       </h1>
       <p class="hero-sub">KOKA curates the finest work-friendly cafes — blazing WiFi, ample outlets, great coffee, and the right ambience to help you focus and thrive.</p>
       <div class="hero-actions">
@@ -66,7 +66,7 @@
       <div class="hero-stats">
         <div class="h-stat"><span class="h-stat-n">6</span><span class="h-stat-l">Curated Cafes</span></div>
         <div class="h-stat"><span class="h-stat-n">4</span><span class="h-stat-l">Categories</span></div>
-        <div class="h-stat"><span class="h-stat-n">100%</span><span class="h-stat-l">Work-Ready</span></div>
+        <div class="h-stat"><span class="h-stat-n">100%</span><span class="h-stat-l">Approved by Koka</span></div>
       </div>
     </div>
 
@@ -75,13 +75,9 @@
       <div class="hero-right-glow"></div>
       <div class="hero-right-content">
 
-        <!-- MASCOT HERO — replace src with your file -->
+  
         <div class="mascot-hero">
-          <div class="mascot-placeholder">
-            <img src="mascot.png" alt="KOKA Mascot">
-          </div>
-          <!-- Uncomment and fill in your file:
-          <img src="mascot.png" alt="KOKA Mascot"> -->
+          <img src="mascot.png" alt="KOKA Mascot">
         </div>
 
         <div class="hero-chips">
@@ -153,28 +149,24 @@
   <section class="sec" style="background:var(--ivory);">
     <div class="wrap">
       <div class="video-layout">
-        <div class="video-player" onclick="alert('Playing KOKA video...')">
-          <div class="v-bg"></div>
-          <div class="v-play">
-            <div class="v-play-btn"><i data-lucide="play"></i></div>
-          </div>
-          <span class="v-label">KOKA — Promotion Video</span>
-          <!-- Mascot peek on hover -->
-          <div class="v-mascot">
-            <div class="v-mascot-ph">
-              <i data-lucide="image" style="width:18px;height:18px;opacity:.3;"></i>
-            </div>
-            <!-- Uncomment: <img src="mascot.png" alt=""> -->
-          </div>
+        <div class="video-player">
+          <iframe 
+            width="100%" 
+            height="100%" 
+            src="https://www.youtube.com/embed/fUKtctJw3wk"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
         </div>
         <div class="video-info">
           <span class="eyebrow">Watch</span>
           <h3>See What KOKA<br>Is All About</h3>
           <div class="hr-line"></div>
           <p>Watch how KOKA helps students and remote workers discover ideal spots to focus, create, and collaborate across the city.</p>
-          <a href="https://youtube.com" target="_blank" class="yt-btn">
-            <i data-lucide="youtube"></i> Watch on YouTube
-          </a>
+          <a href="https://youtu.be/fUKtctJw3wk?si=p_ZcPMJgB1DPg5oO" target="_blank" class="yt-btn">
+            <i class="fa-brands fa-youtube"></i>Watch on YouTube</a>
         </div>
       </div>
     </div>
@@ -193,16 +185,15 @@
       <div>
         <p class="foot-social-label">Follow Us</p>
         <div class="foot-socials">
-          <a class="foot-soc" href="#"><i data-lucide="instagram"></i></a>
-          <a class="foot-soc" href="#"><i data-lucide="twitter"></i></a>
-          <a class="foot-soc" href="#"><i data-lucide="youtube"></i></a>
-          <a class="foot-soc" href="#"><i data-lucide="music"></i></a>
+          <a class="foot-soc" href="https://www.instagram.com/kokafinds?igsh=MXB5MnV2NTkyenZybg%3D%3D&utm_source=qr" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+          <a class="foot-soc" href="https://www.tiktok.com/@koka.finds?_r=1&_t=ZS-96N12sdMtgD" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+          <a class="foot-soc" href="https://youtube.com/@kokafinds?si=qYI2hrxWtaLeasAr" target="_blank"><i class="fa-brands fa-youtube"></i></a>
         </div>
       </div>
     </div>
     <div class="foot-bottom">
       <span>© 2026 KOKA. All rights reserved.</span>
-      <span>Crafted for cafe lovers ☕</span>
+      <span>Crafted for cafe lovers</span>
     </div>
   </footer>
 </div>
@@ -233,27 +224,27 @@
   <div class="cafe-sec">
     <div class="cafe-grid" id="cafeGrid">
 
-      <div class="cafe-card" data-tags="wifi,plug" onclick="openDetail(0)">
+      <div class="cafe-card" data-tags="wifi,plug,quiet" onclick="openDetail(0)">
         <div class="cafe-img">
           <img src ="cafe/brew1.jpeg">
-          <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div><!-- <img src="mascot.png"> --></div>
+          <div class="cafe-mascot-peek"><img src="mascotpeek.png" alt="koka"></div>
           <div class="cafe-tags-row">
-            <span class="tag tag-wifi"><i data-lucide="wifi"></i> Fast WiFi</span>
-            <span class="tag tag-plug"><i data-lucide="plug"></i> Plugs</span>
+            <span class="tag tag-wifi"><i data-lucide="wifi"></i> 150 mbps</span>
+            <span class="tag tag-quiet"><i data-lucide="volume-x"></i> Quiet</span>
           </div>
         </div>
         <div class="cafe-body">
           <div class="cafe-name">Brew By Dy's</div>
           <div class="cafe-loc"><i data-lucide="map-pin"></i>Pasir Putih</div>
           <div class="cafe-amens">
-            <span class="cafe-amen"><i data-lucide="wifi"></i> ~150 Mbps</span>
+            <span class="cafe-amen"><i data-lucide="wifi"></i> ~153-156 Mbps</span>
             <span class="cafe-amen"><i data-lucide="plug"></i> All tables</span>
             <span class="cafe-amen"><i data-lucide="clock"></i> 8AM–10PM</span>
           </div>
-          <p class="cafe-desc">Minimalist industrial space with blazing-fast fiber WiFi. A paradise for developers and designers.</p>
+          <p class="cafe-desc">Warm minimalist-industrial café a calm atmosphere and blazing-fast Wi-Fi. A paradise for developers & designers.</p>
           <div class="cafe-foot">
             <button class="c-btn-p" onclick="event.stopPropagation();openDetail(0)">Detail</button>
-            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Brewlab Studio')">Locations</button>
+            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Brew by dys')">Locations</button>
           </div>
         </div>
       </div>
@@ -261,124 +252,124 @@
       <div class="cafe-card" data-tags="budget,plug,wifi" onclick="openDetail(1)">
         <div class="cafe-img">
           <img src ="cafe/fey1.jpeg">
-          <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
+          <div class="cafe-mascot-peek"><img src="mascotpeek.png" alt="koka"></div>
           <div class="cafe-tags-row">
             <span class="tag tag-budget"><i data-lucide="coins"></i> Budget</span>
-            <span class="tag tag-wifi"><i data-lucide="wifi"></i> WiFi</span>
+            <span class="tag tag-wifi"><i data-lucide="wifi"></i> Fast WiFi</span>
           </div>
         </div>
         <div class="cafe-body">
-          <div class="cafe-name">Fey's Patisserie</div>
+          <div class="cafe-name">Fey Patisserie & Coffee</div>
           <div class="cafe-loc"><i data-lucide="map-pin"></i> Teluk Tering</div>
           <div class="cafe-amens">
             <span class="cafe-amen"><i data-lucide="coins"></i> Rp 15–43K</span>
-            <span class="cafe-amen"><i data-lucide="volume-x"></i> Quiet</span>
+            <span class="cafe-amen"><i data-lucide="wifi"></i> ~48-52 Mbps</span>
             <span class="cafe-amen"><i data-lucide="clock"></i> 10AM–10PM</span>
           </div>
-          <p class="cafe-desc">Botanical cafe with library-level silence and an affordable menu. Perfect for long study sessions.</p>
+          <p class="cafe-desc">Cozy small-space patisserie with a warm atmosphere, budget-friendly menu, and reliable Wi-Fi.</p>
           <div class="cafe-foot">
             <button class="c-btn-p" onclick="event.stopPropagation();openDetail(1)">Detail</button>
-            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('The Green Page')">Locations</button>
+            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Fey Patisserie & Coffee')">Locations</button>
           </div>
         </div>
       </div>
 
-      <div class="cafe-card" data-tags="wifi,budget,plug" onclick="openDetail(2)">
+      <div class="cafe-card" data-tags="wifi,plug,quiet" onclick="openDetail(2)">
         <div class="cafe-img">
           <img src ="cafe/goffee1.jpeg">
-          <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
+          <div class="cafe-mascot-peek"><img src="mascotpeek.png" alt="koka"></div>
           <div class="cafe-tags-row">
             <span class="tag tag-wifi"><i data-lucide="wifi"></i> Fast WiFi</span>
-            <span class="tag tag-budget"><i data-lucide="plug"></i> Plugs</span>
+            <span class="tag tag-quiet"><i data-lucide="volume-x"></i> Quiet</span>
           </div>
         </div>
         <div class="cafe-body">
           <div class="cafe-name">Goffee Batam</div>
           <div class="cafe-loc"><i data-lucide="map-pin"></i> Teluk Tering</div>
           <div class="cafe-amens">
-            <span class="cafe-amen"><i data-lucide="wifi"></i> ~48-52 Mbps</span>
+            <span class="cafe-amen"><i data-lucide="wifi"></i> ~42-51 Mbps</span>
             <span class="cafe-amen"><i data-lucide="plug"></i> All tables</span>
             <span class="cafe-amen"><i data-lucide="clock"></i> 9AM–12AM</span>
           </div>
-          <p class="cafe-desc">Spacious waterfront cafe with panoramic sea views, strong WiFi, and a budget-friendly menu.</p>
+          <p class="cafe-desc">Spacious and quiet atmosphere with fast Wi-Fi & comfortable spot for studying or working for long hours.</p>
           <div class="cafe-foot">
             <button class="c-btn-p" onclick="event.stopPropagation();openDetail(2)">Detail</button>
-            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Blue Harbor Co.')">Locations</button>
+            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Goffee Batam')">Locations</button>
           </div>
         </div>
       </div>
 
-      <div class="cafe-card" data-tags="quiet,plug" onclick="openDetail(3)">
+      <div class="cafe-card" data-tags="quiet,plug,budget" onclick="openDetail(3)">
         <div class="cafe-img">
           <img src ="cafe/sharlotte1.jpeg">
-          <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
+          <div class="cafe-mascot-peek"><img src="mascotpeek.png" alt="koka"></div>
           <div class="cafe-tags-row">
             <span class="tag tag-quiet"><i data-lucide="volume-x"></i> Quiet</span>
-            <span class="tag tag-plug"><i data-lucide="plug"></i> Plugs</span>
+            <span class="tag tag-budget"><i data-lucide="coins"></i> Semi Budget</span>
           </div>
         </div>
         <div class="cafe-body">
           <div class="cafe-name">Sharlotte Cafe</div>
           <div class="cafe-loc"><i data-lucide="map-pin"></i> Taman Baloi</div>
           <div class="cafe-amens">
+            <span class="cafe-amen"><i data-lucide="coins"></i> Rp 12–72K</span>
             <span class="cafe-amen"><i data-lucide="plug"></i> Some Spots</span>
-            <span class="cafe-amen"><i data-lucide="volume-x"></i> Quiet vibes</span>
             <span class="cafe-amen"><i data-lucide="clock"></i> 10AM–10PM</span>
           </div>
-          <p class="cafe-desc">Warm terracotta interiors with quiet zones and a power outlet at every single seat.</p>
+          <p class="cafe-desc">Aesthetic cozy café with a calm study-friendly atmosphere, popular desserts, and semi-budget-friendly.</p>
           <div class="cafe-foot">
             <button class="c-btn-p" onclick="event.stopPropagation();openDetail(3)">Detail</button>
-            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Terracotta Corner')">Locations</button>
+            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Sharlotte Cafe')">Locations</button>
           </div>
         </div>
       </div>
 
-      <div class="cafe-card" data-tags="budget,wifi" onclick="openDetail(4)">
+      <div class="cafe-card" data-tags="budget,plug,quiet" onclick="openDetail(4)">
         <div class="cafe-img">
           <img src ="cafe/kobie1.jpeg">
-          <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
+          <div class="cafe-mascot-peek"><img src="mascotpeek.png" alt="koka"></div>
           <div class="cafe-tags-row">
             <span class="tag tag-budget"><i data-lucide="coins"></i> Budget</span>
-            <span class="tag tag-wifi"><i data-lucide="wifi"></i> Fast WiFi</span>
+            <span class="tag tag-plug"><i data-lucide="plug"></i> Plugs</span>
           </div>
         </div>
         <div class="cafe-body">
           <div class="cafe-name">Kobie Coffee Tiban</div>
-          <div class="cafe-loc"><i data-lucide="map-pin"></i> Tiban</div>
+          <div class="cafe-loc"><i data-lucide="map-pin"></i> Patam Lestari</div>
           <div class="cafe-amens">
             <span class="cafe-amen"><i data-lucide="coins"></i> Rp 12–52K</span>
             <span class="cafe-amen"><i data-lucide="wifi"></i> ~16-21 Mbps</span>
             <span class="cafe-amen"><i data-lucide="clock"></i> 10AM–11PM</span>
           </div>
-          <p class="cafe-desc">Student favourite with daily promos, loyalty perks, and reliably fast WiFi all day long.</p>
+          <p class="cafe-desc">Modern-Retro café with a calm atmosphere, aesthetic interiors, and budget-friendly menu.</p>
           <div class="cafe-foot">
             <button class="c-btn-p" onclick="event.stopPropagation();openDetail(4)">Detail</button>
-            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Violet Grounds')">Locations</button>
+            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Kobie Coffee Tiban')">Locations</button>
           </div>
         </div>
       </div>
 
-      <div class="cafe-card" data-tags="quiet,wifi,plug,budget" onclick="openDetail(5)">
+      <div class="cafe-card" data-tags="plug,budget" onclick="openDetail(5)">
         <div class="cafe-img">
           <img src ="cafe/local1.jpeg">
-          <div class="cafe-mascot-peek"><div class="cafe-mascot-ph">mascot</div></div>
+          <div class="cafe-mascot-peek"><img src="mascotpeek.png" alt="koka"></div>
           <div class="cafe-tags-row">
-            <span class="tag tag-quiet"><i data-lucide="volume-x"></i> Quiet</span>
-            <span class="tag tag-wifi"><i data-lucide="wifi"></i> 200 Mbps</span>
+            <span class="tag tag-plug"><i data-lucide="plug"></i> Plugs</span>
+            <span class="tag tag-budget"><i data-lucide="coins"></i> Semi Budget</span>
           </div>
         </div>
         <div class="cafe-body">
           <div class="cafe-name">Local Cafe</div>
           <div class="cafe-loc"><i data-lucide="map-pin"></i> Baloi Indah</div>
           <div class="cafe-amens">
-            <span class="cafe-amen"><i data-lucide="wifi"></i> ~23-28 Mbps</span>
+            <span class="cafe-amen"><i data-lucide="coins"></i> Rp 23–60K</span>
             <span class="cafe-amen"><i data-lucide="plug"></i> Some Spots</span>
             <span class="cafe-amen"><i data-lucide="clock"></i> 8AM–10.30PM</span>
           </div>
-          <p class="cafe-desc">Our #1 pick — quiet, ultra-fast WiFi, outlets everywhere, and the best prices in town.</p>
+          <p class="cafe-desc">Cozy and aesthetic café with a spacious layout, several plug spots, and a lively atmosphere.</p>
           <div class="cafe-foot">
             <button class="c-btn-p" onclick="event.stopPropagation();openDetail(5)">Detail</button>
-            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Mint &amp; Co.')">Locations</button>
+            <button class="c-btn-s" onclick="event.stopPropagation();openMaps('Local Cafe Batam, Permata Baloi')">Locations</button>
           </div>
         </div>
       </div>
@@ -402,45 +393,41 @@
       </div>
       <!-- Mascot recommendation banner -->
       <div class="rec-mascot">
-        <div class="rec-mascot-ph">
-          <i data-lucide="image"></i>
-          mascot here
-        </div>
-        <!-- Uncomment: <img src="mascot.png" alt=""> -->
+        <img src="mascotrec.png" alt="koka">
       </div>
     </div>
   </div>
 
   <div class="picks-sec">
     <div class="picks-editorial">
-      <div class="pick-card pick-large ci6">
+      <div class="pick-card pick-large rec1">
         <div class="pick-overlay"></div>
         <div class="pick-content">
           <span class="pick-badge"><i data-lucide="trophy"></i> #1 Overall</span>
-          <div class="pick-title">Mint &amp; Co.</div>
-          <p class="pick-sub">The ultimate work cafe — quiet zones, 200 Mbps WiFi, outlets at every seat, and prices that make sense.</p>
+          <div class="pick-title">Goffee Batam</div>
+          <p class="pick-sub">The ultimate work cafe — quiet zones, Fast 40-50 mbps WiFi, outlets at every seat, & various menus.</p>
           <div class="pick-actions">
-            <button class="pick-action-btn" onclick="openDetail(5)"><i data-lucide="info"></i> Detail</button>
-            <button class="pick-action-btn"><i data-lucide="play"></i> Watch Tour</button>
+            <button class="pick-action-btn" onclick="openDetail(2)"><i data-lucide="info"></i> Detail</button>
+            <button class="pick-action-btn" onclick="event.stopPropagation();openMaps('Goffee Batam')"><i data-lucide="map-pin"></i>Locations</button>
           </div>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:20px;">
-        <div class="pick-card pick-small ci1">
+        <div class="pick-card pick-small rec2">
           <div class="pick-overlay"></div>
           <div class="pick-content">
             <span class="pick-badge"><i data-lucide="zap"></i> Fastest WiFi</span>
-            <div class="pick-title">Brewlab Studio</div>
+            <div class="pick-title">Brew By Dy's</div>
             <div class="pick-actions">
               <button class="pick-action-btn" onclick="openDetail(0)"><i data-lucide="info"></i> Detail</button>
             </div>
           </div>
         </div>
-        <div class="pick-card pick-small ci2">
+        <div class="pick-card pick-small rec3">
           <div class="pick-overlay"></div>
           <div class="pick-content">
             <span class="pick-badge"><i data-lucide="coins"></i> Best Value</span>
-            <div class="pick-title">The Green Page</div>
+            <div class="pick-title">Fey Patisserie & Coffee</div>
             <div class="pick-actions">
               <button class="pick-action-btn" onclick="openDetail(1)"><i data-lucide="info"></i> Detail</button>
             </div>
@@ -453,24 +440,24 @@
     <div class="more-grid">
       <div class="mpick-card">
         <div class="mpick-icon"><i data-lucide="volume-x"></i></div>
-        <div class="mpick-label">Best Ambience</div>
-        <h4>Mint &amp; Co.</h4>
-        <p>Tranquil corners and soft lighting — the most focus-friendly space we've tested.</p>
-        <button class="btn btn-primary btn-sm" onclick="openDetail(5)">Cafe Detail</button>
-      </div>
-      <div class="mpick-card">
-        <div class="mpick-icon"><i data-lucide="plug"></i></div>
-        <div class="mpick-label">Most Outlets</div>
-        <h4>Terracotta Corner</h4>
-        <p>Power strips at every seat — charge your laptop, phone, and tablet simultaneously.</p>
+        <div class="mpick-label">Cute - Aesthetic</div>
+        <h4>Sharlotte Cafe</h4>
+        <p>Popular for its cute aesthetic ambiance and semi budget-friendly menu perfect for hangouts or study sessions.</p>
         <button class="btn btn-primary btn-sm" onclick="openDetail(3)">Cafe Detail</button>
       </div>
       <div class="mpick-card">
+        <div class="mpick-icon"><i data-lucide="plug"></i></div>
+        <div class="mpick-label">Modern - Retro</div>
+        <h4>Kobie Coffee Tiban</h4>
+        <p>Fresh modern retro ambience, plenty of plugs, and budget-friendly menu perfect for studying or casual hangouts.</p>
+        <button class="btn btn-primary btn-sm" onclick="openDetail(4)">Cafe Detail</button>
+      </div>
+      <div class="mpick-card">
         <div class="mpick-icon"><i data-lucide="award"></i></div>
-        <div class="mpick-label">Best All-Rounder</div>
-        <h4>Blue Harbor Co.</h4>
-        <p>Ticks every box — budget, WiFi, and plugs — with a stunning waterfront view.</p>
-        <button class="btn btn-primary btn-sm" onclick="openDetail(2)">Cafe Detail</button>
+        <div class="mpick-label">Cozy - homey</div>
+        <h4>Local Cafe</h4>
+        <p>Cozy homey ambience, semi budget-friendly menu, and plenty of plugs perfect for work or study sessions.</p>
+        <button class="btn btn-primary btn-sm" onclick="openDetail(5)">Cafe Detail</button>
       </div>
     </div>
   </div>
@@ -520,11 +507,11 @@
     </div>
     <div class="cs-cell">
       <div class="cs-icon"><i data-lucide="mail"></i></div>
-      <div><div class="cs-label">Email</div><div class="cs-val">hello@koka.cafe</div></div>
+      <div><div class="cs-label">Email</div><div class="cs-val">Kokafinds@protonmail.com</div></div>
     </div>
     <div class="cs-cell">
-      <div class="cs-icon"><i data-lucide="instagram"></i></div>
-      <div><div class="cs-label">Instagram</div><div class="cs-val">@koka.cafe</div></div>
+      <div class="cs-icon"><i class="fa-brands fa-instagram"></i></div>
+      <div><div class="cs-label">Instagram</div><div class="cs-val">@kokafinds</div></div>
     </div>
   </div>
 
@@ -534,11 +521,7 @@
         <div class="contact-art-glow"></div>
         <!-- Mascot contact -->
         <div class="contact-mascot">
-          <div class="contact-mascot-ph">
-            <i data-lucide="image"></i>
-            mascot here
-          </div>
-          <!-- Uncomment: <img src="mascot.png" alt="KOKA Mascot"> -->
+          <img src="mascotcontact.png" alt="koka">
         </div>
       </div>
       <div class="contact-info-card">

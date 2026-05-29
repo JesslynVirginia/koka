@@ -4,99 +4,99 @@
 ══════════════════════════════ */
 const CAFES = [
   {
-    name: "Brew by Dy's", bg: 'ci1', icon: 'coffee', rating: 4.8,
-    pills: [{i:'clock',t:'8AM–10PM'},{i:'map-pin',t:'Pasir Putih'},{i:'wallet',t:'~Rp 35K avg'}],
-    desc: 'A minimalist industrial-style cafe that doubles as a creative studio. Equipped with blazing-fast fiber optic WiFi and outlets at every desk. Lo-fi beats keep you in flow. Popular with developers, designers, and freelancers.',
+    name: "Brew by Dy's", rating: 4.8,
+    pills: [{i:'clock',t:'8AM–10PM'},{i:'map-pin',t:'Pasir Putih'},{i:'wallet',t:'~Rp 44K avg'}],
+    desc: 'A warm minimalist-industrial café with a calm atmosphere and blazing-fast 150 Mbps Wi-Fi, making it a comfortable spot for developers, designers, or anyone looking to study and work peacefully.',
     amenities: [
-      {i:'wifi',   l:'WiFi Speed',    v:'~150 Mbps fiber'},
+      {i:'wifi',   l:'WiFi Speed',    v:'~150 Mbps'},
       {i:'coins',   l:'Price Range',  v:'Rp 18K – 70K per item'},
-      {i:'leaf',    l:'Outdoor area',         v:'available'},
+      {i:'leaf',    l:'Outdoor area',         v:'Available'},
       {i:'clock',  l:'Hours',         v:'8:00 AM – 10:00 PM'}
     ],
     images: ['cafe/brew1.jpeg','cafe/brew2.jpeg','cafe/brew3.jpeg','cafe/brew4.jpeg'],
     reviews: [
-      {t:"Best WiFi I've ever had in a cafe. Downloaded a 2GB file in minutes!", n:'Rizky A.'},
-      {t:"Love the aesthetic. Great place to grind on a deadline.", n:'Sena W.'}
+      {t:"The place is cozy, clean and quiet. Very suitable to have friends or business meeting here. ", n:'HT'},
+      {t:"The best WFC place. The place is comfortable and cozy. Plenty of outlets, and the coffee and prices are still worth it.", n:'Darwin R.'}
     ]
   },
   {
-    name: "Fey's Patisserie", bg: 'ci2', icon: 'leaf', rating: 4.8,
-    pills: [{i:'clock',t:'10AM–10PM'},{i:'map-pin',t:'Nagoya Hill'},{i:'wallet',t:'~Rp 20K min'}],
-    desc: 'A botanical-themed cafe surrounded by indoor plants and soft natural lighting. A quiet policy is enforced — making it feel like a cozy reading room. Beloved by students who need deep-focus sessions.',
+    name: "Fey Patisserie & Coffee", rating: 4.8,
+    pills: [{i:'clock',t:'10AM–10PM'},{i:'map-pin',t:'Teluk Tering'},{i:'wallet',t:'~Rp 29K avg'}],
+    desc: 'A cozy small-space patisserie with a warm atmosphere, budget-friendly menu, and reliable Wi-Fi speeds around 50 Mbps that are still fast enough for studying or working comfortably.',
     amenities: [
-      {i:'wifi',   l:'WiFi Speed',    v:'~48-52 Mbps fiber'},
+      {i:'wifi',   l:'WiFi Speed',    v:'~48-52 Mbps'},
       {i:'coins',   l:'Price Range',  v:'Rp 15K – 43K per item'},
       {i:'leaf',    l:'Outdoor area',         v:'available'},
       {i:'clock',  l:'Hours',         v:'10:00 AM – 10:00 PM'}
     ],
     images: ['cafe/fey1.jpeg', 'cafe/fey2.jpeg', 'cafe/fey3.jpeg', 'cafe/fey4.jpeg'],
     reviews: [
-      {t:"Finally a cafe where I can hear myself think. This is my new office!", n:'Dara L.'},
-      {t:"Prices are super fair for the quality. A genuine gem.", n:'Andi T.'}
+      {t:"It is very nice place for working or just for chilling. Good ambience and lighting. You can work from cage here, the electricity and wifi very well support. ", n:'Khoirul A.'},
+      {t:"Coffee shop with cozy & homey vibes. Great place for working, too", n:'Viviyan Y.'}
     ]
   },
   {
-    name: 'Goffee Batam', bg: 'ci3', icon: 'anchor', rating: 4.6,
-    pills: [{i:'clock',t:'7AM–12AM'},{i:'map-pin',t:'Harbour Bay'},{i:'wallet',t:'~Rp 25K min'}],
-    desc: 'Spacious waterfront cafe with panoramic views of the Batam strait. Checks all boxes — strong WiFi, abundant power outlets, and a budget-friendly menu. High ceilings and open layout make it an all-day work haven.',
+    name: 'Goffee Batam', rating: 4.6,
+    pills: [{i:'clock',t:'7AM–12AM'},{i:'map-pin',t:'Teluk Tering'},{i:'wallet',t:'~Rp 46,5K avg'}],
+    desc: 'A spacious and quiet café with fast Wi-Fi, making it a comfortable and budget-friendly spot for studying or working for long hours.',
     amenities: [
-      {i:'wifi',   l:'WiFi Speed',    v:'~42-51 Mbps fiber'},
+      {i:'wifi',   l:'WiFi Speed',    v:'~42-51 Mbps'},
       {i:'coins',   l:'Price Range',  v:'Rp 18K – 75K per item'},
       {i:'leaf',    l:'Outdoor area',         v:'available'},
       {i:'clock',  l:'Hours',         v:'9:00 AM – 12:00 AM'}
     ],
     images: ['cafe/goffee1.jpeg', 'cafe/goffee2.jpeg', 'cafe/goffee3.jpeg','cafe/goffee4.jpeg'],
     reviews: [
-      {t:"The view while working is absolutely unbeatable.", n:'Felix O.'},
-      {t:"Can't beat this price for this quality.", n:'Nisa R.'}
+      {t:"They let me to work until mid night. Their Internet connection is good & the servers are nice.", n:'Haritma M.'},
+      {t:"Nice cafe to work and chill", n:'Davianto'}
     ]
   },
   {
-    name: 'Sharlotte Cafe', bg: 'ci4', icon: 'home', rating: 4.7,
-    pills: [{i:'clock',t:'9AM–10PM'},{i:'map-pin',t:'Batam Centre'},{i:'wallet',t:'~Rp 30K min'}],
-    desc: 'Warm terracotta interiors with plush seating and thoughtful acoustics. Designated no-phone zones and an impressive ratio of plug points to seats. Perfect for calm, focused writing or tackling big projects.',
+    name: 'Sharlotte Cafe', rating: 4.7,
+    pills: [{i:'clock',t:'10AM–10PM'},{i:'map-pin',t:'Taman Baloi'},{i:'wallet',t:'~Rp 42K avg'}],
+    desc: 'An aesthetic and cozy café known for its adorable white-toned interior, cool and calming atmosphere, wide variety of popular desserts, and semi-budget-friendly menu that makes it perfect for hanging out or taking cute photos.',
     amenities: [
-      {i:'wifi',   l:'WiFi Speed',    v:'~2-8 Mbps fiber'},
+      {i:'wifi',   l:'WiFi Speed',    v:'~2-8 Mbps'},
       {i:'coins',   l:'Price Range',  v:'Rp 12K – 72K per item'},
       {i:'leaf',    l:'Outdoor area',         v:'unavailable'},
-      {i:'clock',  l:'Hours',         v:'10:00 AM – 10:00 AM'}
+      {i:'clock',  l:'Hours',         v:'10:00 AM – 10:00 PM'}
     ],
     images: ['cafe/sharlotte1.jpeg', 'cafe/sharlotte2.jpeg', 'cafe/sharlotte3.jpeg', 'cafe/sharlotte4.jpeg'],
     reviews: [
-      {t:"The no-phone zone is a game changer for focus.", n:'Maya K.'},
-      {t:"Seats are genuinely comfortable for hours of work.", n:'Bimo P.'}
+      {t:"Cozy environnmet and good desserts. decorations are stunning and it was not crowded on monday.", n:'Alp'},
+      {t:"Such a perfect spot for those looking to hang out, chill, and get some work or studying done. It has a super chill ambiance with clean, modern aesthetic. They also offer a wide variety of mouthwatering desserts.", n:'Selly K.H.'}
     ]
   },
   {
-    name: 'Kobie Coffee Tiban', bg: 'ci5', icon: 'sparkles', rating: 4.8,
-    pills: [{i:'clock',t:'10AM–11PM'},{i:'map-pin',t:'Batu Aji'},{i:'wallet',t:'~Rp 18K min'}],
-    desc: 'Student hotspot with daily promos, loyalty card perks, and consistently strong WiFi. An eclectic aesthetic and a community board for local events. Warm evening vibe suits both social and focused work.',
+    name: 'Kobie Coffee Tiban', rating: 4.8,
+    pills: [{i:'clock',t:'10AM–11PM'},{i:'map-pin',t:'Patam Lestari'},{i:'wallet',t:'~Rp 32K avg'}],
+    desc: 'An Instagrammable Modern-Retro style café with a calm atmosphere, aesthetic interiors, and semi-budget-friendly prices perfect for relaxing or studying.',
     amenities: [
-      {i:'wifi',   l:'WiFi Speed',    v:'~16-21 Mbps fiber'},
+      {i:'wifi',   l:'WiFi Speed',    v:'~16-21 Mbps'},
       {i:'coins',   l:'Price Range',  v:'Rp 12K – 52K per item'},
       {i:'leaf',    l:'Outdoor area',         v:'available'},
-      {i:'clock',  l:'Hours',         v:'10:00 AM – 11:00 AM'}
+      {i:'clock',  l:'Hours',         v:'10:00 AM – 11:00 PM'}
     ],
     images: ['cafe/kobie1.jpeg', 'cafe/kobie2.jpeg', 'cafe/kobie3.jpeg', 'cafe/kobie4.jpeg'],
     reviews: [
-      {t:"Best student budget cafe in the city. Promos every day!", n:'Hana S.'},
-      {t:"WiFi held up through 3 hours of Zoom calls.", n:'Wira D.'}
+      {t:"There are power outlets so it’s WFC-friendly.", n:'Arum'},
+      {t:"The concept of Retro Pop is really unique, there are different photo spots at the cafe. Not just the ambience is great, the food from RUMA was delicious.", n:'Schia'}
     ]
   },
   {
-    name: 'Local Cafe', bg: 'ci6', icon: 'droplets', rating: 4.4,
-    pills: [{i:'clock',t:'7AM–11PM'},{i:'map-pin',t:'Nongsa Area'},{i:'wallet',t:'~Rp 22K min'}],
-    desc: 'KOKA\'s all-time top-rated cafe. Combines everything a remote worker could want: near-silence, 200 Mbps fiber WiFi, outlets at every seat, and prices that make sense. Fresh, airy, and calming interior.',
+    name: 'Local Cafe', rating: 4.4,
+    pills: [{i:'clock',t:'8AM–10.30PM'},{i:'map-pin',t:'Baloi Indah'},{i:'wallet',t:'~Rp 42K avg'}],
+    desc: 'A cozy and aesthetic café with a spacious layout, several plug spots, and a lively atmosphere that still feels comfortable for hanging out or getting work done.',
     amenities: [
-      {i:'wifi',   l:'WiFi Speed',    v:'~23-28 Mbps fiber'},
+      {i:'wifi',   l:'WiFi Speed',    v:'~23-28 Mbps'},
       {i:'coins',   l:'Price Range',  v:'Rp 23K – 60K per item'},
       {i:'leaf',    l:'Outdoor area',         v:'available'},
-      {i:'clock',  l:'Hours',         v:'9:00 AM – 10:30 AM'}
+      {i:'clock',  l:'Hours',         v:'8:00 AM – 10:30 PM'}
     ],
     images: ['cafe/local1.jpeg', 'cafe/local2.jpeg', 'cafe/local3.jpeg', 'cafe/local4.jpeg'],
     reviews: [
-      {t:"This is THE place. I've been coming here for 6 months straight.", n:'Kevin R.'},
-      {t:"Perfect in every way. Quiet, fast WiFi, beautiful, affordable.", n:'Laila N.'}
+      {t:"Great food and cozy place. Popular with students since it’s near campus. A bit crowded at times, but service is quick.", n:'Oct'},
+      {t:"Good and recommended. Crowded but fast serving. Delicious and good taste.", n:'Fitri D.'}
     ]
   }
 ];
@@ -376,8 +376,7 @@ function openDetail(idx) {
         '<div class="gallery-main">' +
           slidesHTML +
           '<div class="gallery-mascot">' +
-            '<div class="gallery-mascot-ph">mascot</div>' +
-            '<!-- <img src="mascot.png" alt=""> -->' +
+            '<img src="mascotpeek.png" alt="koka">' +
           '</div>' +
           '<div class="gallery-arrows">' +
             '<button class="gallery-arrow" onclick="galleryPrev()">' +
