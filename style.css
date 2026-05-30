@@ -373,7 +373,7 @@ footer { background: var(--espresso); padding: 68px 0 32px; }
   background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14);
   display: flex; align-items: center; justify-content: center; color: var(--caramel-lt);
 }
-.foot-logo-mark svg { width: 15px; height: 15px; }
+.foot-logo-mark img { width: 100%; height: auto; }
 .foot-logo-name {
   font-family: 'Playfair Display', serif;
   font-size: 1.45rem; font-weight: 700;
