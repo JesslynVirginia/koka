@@ -1,4 +1,3 @@
-
 /* ══════════════════════════════
    DATA
 ══════════════════════════════ */
@@ -79,7 +78,7 @@ const CAFES = [
     ],
     images: ['cafe/kobie1.jpeg', 'cafe/kobie2.jpeg', 'cafe/kobie3.jpeg', 'cafe/kobie4.jpeg'],
     reviews: [
-      {t:"There are power outlets so it’s WFC-friendly.", n:'Arum'},
+      {t:"There are power outlets so it's WFC-friendly.", n:'Arum'},
       {t:"The concept of Retro Pop is really unique, there are different photo spots at the cafe. Not just the ambience is great, the food from RUMA was delicious.", n:'Schia'}
     ]
   },
@@ -95,7 +94,7 @@ const CAFES = [
     ],
     images: ['cafe/local1.jpeg', 'cafe/local2.jpeg', 'cafe/local3.jpeg', 'cafe/local4.jpeg'],
     reviews: [
-      {t:"Great food and cozy place. Popular with students since it’s near campus. A bit crowded at times, but service is quick.", n:'Oct'},
+      {t:"Great food and cozy place. Popular with students since it's near campus. A bit crowded at times, but service is quick.", n:'Oct'},
       {t:"Good and recommended. Crowded but fast serving. Delicious and good taste.", n:'Fitri D.'}
     ]
   }
@@ -109,18 +108,18 @@ const CAFES = [
 function showPage(id) {
 
   // Ambil semua elemen dengan class "page"
-  var semuaHalaman = document.querySelectorAll('.page');
+  const semuaHalaman = document.querySelectorAll('.page');
 
   // Sembunyikan semua halaman satu per satu
-  for (var i = 0; i < semuaHalaman.length; i++) {
+  for (let i = 0; i < semuaHalaman.length; i++) {
     semuaHalaman[i].classList.remove('active');
   }
 
   // Ambil semua link di navbar
-  var semuaLink = document.querySelectorAll('.nav-links a');
+  const semuaLink = document.querySelectorAll('.nav-links a');
 
   // Hapus style aktif dari semua link navbar
-  for (var i = 0; i < semuaLink.length; i++) {
+  for (let i = 0; i < semuaLink.length; i++) {
     semuaLink[i].classList.remove('active');
   }
 
@@ -146,7 +145,7 @@ function showPage(id) {
 
 // Array untuk menyimpan filter yang aktif
 // Contoh isinya: ['wifi', 'quiet']
-var activeFilters = [];
+let activeFilters = [];
 
 function toggleFilter(tag, btn) {
 
@@ -157,8 +156,8 @@ function toggleFilter(tag, btn) {
     activeFilters = [];
 
     // Hapus style aktif dari semua tombol filter
-    var semuaTombol = document.querySelectorAll('.f-btn');
-    for (var i = 0; i < semuaTombol.length; i++) {
+    const semuaTombol = document.querySelectorAll('.f-btn');
+    for (let i = 0; i < semuaTombol.length; i++) {
       semuaTombol[i].classList.remove('on');
     }
 
@@ -171,7 +170,7 @@ function toggleFilter(tag, btn) {
     document.getElementById('f-all').classList.remove('on');
 
     // Cek apakah filter ini sudah ada di dalam array
-    var posisi = activeFilters.indexOf(tag);
+    const posisi = activeFilters.indexOf(tag);
 
     if (posisi !== -1) {
       // Sudah ada → hapus dari array (toggle off)
@@ -196,28 +195,28 @@ function toggleFilter(tag, btn) {
 function applyFilter() {
 
   // Hitung berapa cafe yang terlihat
-  var jumlahTerlihat = 0;
+  let jumlahTerlihat = 0;
 
   // Ambil semua kartu cafe
-  var semuaCard = document.querySelectorAll('.cafe-card');
+  const semuaCard = document.querySelectorAll('.cafe-card');
 
-  for (var i = 0; i < semuaCard.length; i++) {
+  for (let i = 0; i < semuaCard.length; i++) {
 
-    var card = semuaCard[i];
+    const card = semuaCard[i];
 
     // Ambil tags dari attribute data-tags di HTML
     // Contoh: data-tags="wifi,plug" → ['wifi', 'plug']
-    var cardTags = card.dataset.tags.split(',');
+    const cardTags = card.dataset.tags.split(',');
 
     // Tentukan apakah card ini harus ditampilkan
-    var tampilkan = true;
+    let tampilkan = true;
 
     // Kalau tidak ada filter aktif → tampilkan semua
     if (activeFilters.length === 0) {
       tampilkan = true;
     } else {
       // Cek apakah card ini punya SEMUA filter yang aktif
-      for (var j = 0; j < activeFilters.length; j++) {
+      for (let j = 0; j < activeFilters.length; j++) {
         if (cardTags.indexOf(activeFilters[j]) === -1) {
           // Filter ini tidak ada di card → sembunyikan
           tampilkan = false;
@@ -236,7 +235,7 @@ function applyFilter() {
   }
 
   // Update tulisan "Showing X cafes"
-  var tulisanJumlah = document.getElementById('filterCount');
+  const tulisanJumlah = document.getElementById('filterCount');
   if (tulisanJumlah) {
     if (jumlahTerlihat === 1) {
       tulisanJumlah.textContent = 'Showing 1 cafe';
@@ -252,8 +251,8 @@ function applyFilter() {
    - currentImg = foto yang sedang ditampilkan (nomor urut)
    - totalImgs  = total jumlah foto
 ══════════════════════════════ */
-var currentImg = 0;
-var totalImgs  = 0;
+let currentImg = 0;
+let totalImgs  = 0;
 
 function setGalleryImg(nomorFoto) {
 
@@ -268,8 +267,8 @@ function setGalleryImg(nomorFoto) {
   currentImg = nomorFoto;
 
   // Sembunyikan semua slide foto
-  var semuaSlide = document.querySelectorAll('.gallery-main-img');
-  for (var i = 0; i < semuaSlide.length; i++) {
+  const semuaSlide = document.querySelectorAll('.gallery-main-img');
+  for (let i = 0; i < semuaSlide.length; i++) {
     semuaSlide[i].classList.add('hidden');
   }
 
@@ -277,8 +276,8 @@ function setGalleryImg(nomorFoto) {
   semuaSlide[currentImg].classList.remove('hidden');
 
   // Update thumbnail — hapus aktif dari semua, kasih ke yang dipilih
-  var semuaThumb = document.querySelectorAll('.gallery-thumb');
-  for (var i = 0; i < semuaThumb.length; i++) {
+  const semuaThumb = document.querySelectorAll('.gallery-thumb');
+  for (let i = 0; i < semuaThumb.length; i++) {
     semuaThumb[i].classList.remove('active');
   }
   semuaThumb[currentImg].classList.add('active');
@@ -301,7 +300,8 @@ function galleryNext() {
 function openDetail(idx) {
 
   // Ambil data cafe berdasarkan nomor urut (idx)
-  var cafe = CAFES[idx];
+  const cafe = CAFES[idx];
+  const safeName = cafe.name.replace(/'/g, "\\'");
 
   // Set ulang gallery ke foto pertama
   totalImgs  = cafe.images.length;
@@ -309,8 +309,8 @@ function openDetail(idx) {
 
   // Buat bintang rating
   // Contoh rating 4.5 → '★★★★½'
-  var bintang = '';
-  for (var i = 0; i < Math.floor(cafe.rating); i++) {
+  let bintang = '';
+  for (let i = 0; i < Math.floor(cafe.rating); i++) {
     bintang = bintang + '★';
   }
   if (cafe.rating % 1 >= 0.5) {
@@ -318,16 +318,16 @@ function openDetail(idx) {
   }
 
   // Buat HTML untuk info pills (jam, lokasi, harga)
-  var pillsHTML = '';
-  for (var i = 0; i < cafe.pills.length; i++) {
-    var pill = cafe.pills[i];
+  let pillsHTML = '';
+  for (let i = 0; i < cafe.pills.length; i++) {
+    const pill = cafe.pills[i];
     pillsHTML = pillsHTML + '<span class="info-pill"><i data-lucide="' + pill.i + '"></i>' + pill.t + '</span>';
   }
 
   // Buat HTML untuk daftar amenities (WiFi, Outlets, dll)
-  var amenHTML = '';
-  for (var i = 0; i < cafe.amenities.length; i++) {
-    var amen = cafe.amenities[i];
+  let amenHTML = '';
+  for (let i = 0; i < cafe.amenities.length; i++) {
+    const amen = cafe.amenities[i];
     amenHTML = amenHTML +
       '<li class="amen-item">' +
         '<div class="amen-ico"><i data-lucide="' + amen.i + '"></i></div>' +
@@ -337,9 +337,9 @@ function openDetail(idx) {
   }
 
   // Buat HTML untuk review
-  var revHTML = '';
-  for (var i = 0; i < cafe.reviews.length; i++) {
-    var rev = cafe.reviews[i];
+  let revHTML = '';
+  for (let i = 0; i < cafe.reviews.length; i++) {
+    const rev = cafe.reviews[i];
     revHTML = revHTML +
       '<div class="rev-card">' +
         '<p class="rev-text">"' + rev.t + '"</p>' +
@@ -348,9 +348,9 @@ function openDetail(idx) {
   }
 
   // Buat HTML untuk slide foto gallery
-  var slidesHTML = '';
-  for (var i = 0; i < cafe.images.length; i++) {
-    var kelasTersembunyi = (i !== 0) ? 'hidden' : '';
+  let slidesHTML = '';
+  for (let i = 0; i < cafe.images.length; i++) {
+    const kelasTersembunyi = (i !== 0) ? 'hidden' : '';
 
     slidesHTML = slidesHTML +
       '<div class="gallery-main-img ' + kelasTersembunyi + '">' +
@@ -359,9 +359,9 @@ function openDetail(idx) {
   }
 
   // Buat HTML untuk thumbnail foto
-  var thumbsHTML = '';
-  for (var i = 0; i < cafe.images.length; i++) {
-    var kelasAktif = (i === 0) ? 'active' : '';
+  let thumbsHTML = '';
+  for (let i = 0; i < cafe.images.length; i++) {
+    const kelasAktif = (i === 0) ? 'active' : '';
 
     thumbsHTML = thumbsHTML +
       '<div class="gallery-thumb ' + kelasAktif + '" onclick="setGalleryImg(' + i + ')">' +
@@ -398,7 +398,7 @@ function openDetail(idx) {
         '<div class="info-pills">' + pillsHTML + '</div>' +
         '<p class="dpanel-desc">' + cafe.desc + '</p>' +
         '<ul class="amen-list">' + amenHTML + '</ul>' +
-        '<button class="maps-btn" onclick="openMaps(\'' + cafe.name + '\')">' +
+        '<button class="maps-btn" onclick="openMaps(\'' + safeName + '\')">' +
           '<i data-lucide="map-pin"></i> Open in Google Maps' +
         '</button>' +
       '</div>' +
@@ -441,7 +441,7 @@ document.getElementById('overlay').addEventListener('click', function(e) {
 function openMaps(namaCafe) {
   // encodeURIComponent → ubah spasi & karakter khusus jadi URL-safe
   // Contoh: "Mint & Co. Batam" → "Mint%20%26%20Co.%20Batam"
-  var urlMaps = 'https://www.google.com/maps/search/' + encodeURIComponent(namaCafe + ' Batam');
+  const urlMaps = 'https://www.google.com/maps/search/' + encodeURIComponent(namaCafe + ' Batam');
   window.open(urlMaps, '_blank');
 }
 
@@ -452,10 +452,10 @@ function openMaps(namaCafe) {
 function submitForm() {
 
   // Ambil isi setiap kolom form
-  var nama  = document.getElementById('cName').value.trim();
-  var email = document.getElementById('cEmail').value.trim();
-  var tipe  = document.getElementById('cType').value;
-  var pesan = document.getElementById('cMsg').value.trim();
+  const nama  = document.getElementById('cName').value.trim();
+  const email = document.getElementById('cEmail').value.trim();
+  const tipe  = document.getElementById('cType').value;
+  const pesan = document.getElementById('cMsg').value.trim();
 
   // Cek apakah ada yang kosong
   if (nama === '' || email === '' || tipe === '' || pesan === '') {
@@ -466,7 +466,7 @@ function submitForm() {
   // Cek format email — harus ada @ dan titik
   // Contoh valid: hello@koka.cafe
   // Contoh tidak valid: hellokoka, hello@, @koka
-  var emailValid = email.indexOf('@') !== -1 && email.indexOf('.') !== -1;
+  const emailValid = email.indexOf('@') !== -1 && email.indexOf('.') !== -1;
   if (!emailValid) {
     alert('Please enter a valid email address.');
     return;
@@ -479,7 +479,7 @@ function submitForm() {
   document.getElementById('cMsg').value   = '';
 
   // Tampilkan pesan sukses
-  var pesanSukses = document.getElementById('formOk');
+  const pesanSukses = document.getElementById('formOk');
   pesanSukses.classList.add('show');
 
   // Sembunyikan pesan sukses otomatis setelah 6 detik (6000 ms)
@@ -493,7 +493,7 @@ function submitForm() {
    BAYANGAN NAVBAR SAAT SCROLL
 ══════════════════════════════ */
 window.addEventListener('scroll', function() {
-  var navbar = document.getElementById('mainNav');
+  const navbar = document.getElementById('mainNav');
 
   // Kalau sudah scroll lebih dari 8px → tambah bayangan
   if (window.scrollY > 8) {
@@ -521,4 +521,3 @@ document.addEventListener('keydown', function(e) {
 document.addEventListener('DOMContentLoaded', function() {
   lucide.createIcons();
 });
-
